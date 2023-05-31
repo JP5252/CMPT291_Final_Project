@@ -28,18 +28,74 @@
         /// </summary>
         private void InitializeComponent()
         {
+            tabControl1 = new TabControl();
+            tabPage1 = new TabPage();
+            tabPage2 = new TabPage();
+            tabPage3 = new TabPage();
+            tabControl1.SuspendLayout();
             SuspendLayout();
+            // 
+            // tabControl1
+            // 
+            tabControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(tabPage3);
+            tabControl1.Location = new Point(-2, -1);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(899, 469);
+            tabControl1.SizeMode = TabSizeMode.FillToRight;
+            tabControl1.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Location = new Point(4, 34);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(891, 431);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Cars";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Location = new Point(4, 34);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(891, 431);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "Rentals";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            tabPage3.Location = new Point(4, 34);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Size = new Size(891, 431);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "Reports";
+            tabPage3.UseVisualStyleBackColor = true;
             // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            AutoSize = true;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            ClientSize = new Size(895, 465);
+            Controls.Add(tabControl1);
             Name = "MainPage";
             Text = "Car Rentals";
+            tabControl1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
+
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
+        private TabPage tabPage3;
     }
 }
