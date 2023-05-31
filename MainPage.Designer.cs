@@ -82,7 +82,6 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
-            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(895, 465);
             Controls.Add(tabControl1);
             Name = "MainPage";
