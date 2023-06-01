@@ -54,7 +54,6 @@
             DeleteBtn = new Button();
             AddBtn = new Button();
             Car = new DataGridView();
-            tabControl1 = new TabControl();
             CarID = new DataGridViewTextBoxColumn();
             Make = new DataGridViewTextBoxColumn();
             Model = new DataGridViewTextBoxColumn();
@@ -63,6 +62,7 @@
             Registration = new DataGridViewTextBoxColumn();
             LicensePlate = new DataGridViewTextBoxColumn();
             CTID = new DataGridViewTextBoxColumn();
+            tabControl1 = new TabControl();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Car).BeginInit();
             tabControl1.SuspendLayout();
@@ -70,19 +70,21 @@
             // 
             // tabPage3
             // 
-            tabPage3.Location = new Point(4, 34);
+            tabPage3.Location = new Point(4, 24);
+            tabPage3.Margin = new Padding(2);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(891, 431);
+            tabPage3.Size = new Size(621, 253);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Reports";
             tabPage3.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
-            tabPage2.Location = new Point(4, 34);
+            tabPage2.Location = new Point(4, 24);
+            tabPage2.Margin = new Padding(2);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(891, 431);
+            tabPage2.Padding = new Padding(2);
+            tabPage2.Size = new Size(621, 253);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Rentals";
             tabPage2.UseVisualStyleBackColor = true;
@@ -112,19 +114,21 @@
             tabPage1.Controls.Add(DeleteBtn);
             tabPage1.Controls.Add(AddBtn);
             tabPage1.Controls.Add(Car);
-            tabPage1.Location = new Point(4, 34);
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Margin = new Padding(2);
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(891, 431);
+            tabPage1.Padding = new Padding(2);
+            tabPage1.Size = new Size(621, 253);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Cars";
             tabPage1.UseVisualStyleBackColor = true;
             // 
             // LicensePlateTextBox
             // 
-            LicensePlateTextBox.Location = new Point(580, 316);
+            LicensePlateTextBox.Location = new Point(406, 190);
+            LicensePlateTextBox.Margin = new Padding(2);
             LicensePlateTextBox.Name = "LicensePlateTextBox";
-            LicensePlateTextBox.Size = new Size(150, 31);
+            LicensePlateTextBox.Size = new Size(106, 23);
             LicensePlateTextBox.TabIndex = 20;
             // 
             // label8
@@ -132,154 +136,172 @@
             label8.Anchor = AnchorStyles.Top;
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(485, 322);
+            label8.Location = new Point(340, 193);
+            label8.Margin = new Padding(2, 0, 2, 0);
             label8.Name = "label8";
-            label8.Size = new Size(95, 21);
+            label8.Size = new Size(69, 13);
             label8.TabIndex = 21;
             label8.Text = "LicensePlate";
             // 
             // MileageTextBox
             // 
-            MileageTextBox.Location = new Point(334, 335);
+            MileageTextBox.Location = new Point(234, 201);
+            MileageTextBox.Margin = new Padding(2);
             MileageTextBox.Name = "MileageTextBox";
-            MileageTextBox.Size = new Size(150, 31);
+            MileageTextBox.Size = new Size(106, 23);
             MileageTextBox.TabIndex = 16;
             // 
             // label5
             // 
             label5.Anchor = AnchorStyles.Top;
             label5.AutoSize = true;
-            label5.Location = new Point(254, 334);
+            label5.Location = new Point(178, 200);
+            label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";
-            label5.Size = new Size(74, 25);
+            label5.Size = new Size(49, 15);
             label5.TabIndex = 19;
             label5.Text = "Mileage";
             // 
             // YearTextBox
             // 
-            YearTextBox.Location = new Point(334, 292);
+            YearTextBox.Location = new Point(234, 175);
+            YearTextBox.Margin = new Padding(2);
             YearTextBox.Name = "YearTextBox";
-            YearTextBox.Size = new Size(150, 31);
+            YearTextBox.Size = new Size(106, 23);
             YearTextBox.TabIndex = 14;
             // 
             // label6
             // 
             label6.Anchor = AnchorStyles.Top;
             label6.AutoSize = true;
-            label6.Location = new Point(269, 291);
+            label6.Location = new Point(188, 175);
+            label6.Margin = new Padding(2, 0, 2, 0);
             label6.Name = "label6";
-            label6.Size = new Size(44, 25);
+            label6.Size = new Size(29, 15);
             label6.TabIndex = 17;
             label6.Text = "Year";
             // 
             // RegistrationTextBox
             // 
-            RegistrationTextBox.Location = new Point(334, 377);
+            RegistrationTextBox.Location = new Point(234, 226);
+            RegistrationTextBox.Margin = new Padding(2);
             RegistrationTextBox.Name = "RegistrationTextBox";
-            RegistrationTextBox.Size = new Size(150, 31);
+            RegistrationTextBox.Size = new Size(106, 23);
             RegistrationTextBox.TabIndex = 18;
             // 
             // label7
             // 
             label7.Anchor = AnchorStyles.Top;
             label7.AutoSize = true;
-            label7.Location = new Point(228, 376);
+            label7.Location = new Point(160, 226);
+            label7.Margin = new Padding(2, 0, 2, 0);
             label7.Name = "label7";
-            label7.Size = new Size(106, 25);
+            label7.Size = new Size(70, 15);
             label7.TabIndex = 15;
             label7.Text = "Registration";
             // 
             // ModelTextBox
             // 
-            ModelTextBox.Location = new Point(73, 381);
+            ModelTextBox.Location = new Point(51, 229);
+            ModelTextBox.Margin = new Padding(2);
             ModelTextBox.Name = "ModelTextBox";
-            ModelTextBox.Size = new Size(150, 31);
+            ModelTextBox.Size = new Size(106, 23);
             ModelTextBox.TabIndex = 12;
             // 
             // label4
             // 
             label4.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label4.AutoSize = true;
-            label4.Location = new Point(8, 380);
+            label4.Location = new Point(6, 228);
+            label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
-            label4.Size = new Size(63, 25);
+            label4.Size = new Size(41, 15);
             label4.TabIndex = 13;
             label4.Text = "Model";
             // 
             // MakeTextBox
             // 
-            MakeTextBox.Location = new Point(73, 335);
+            MakeTextBox.Location = new Point(51, 201);
+            MakeTextBox.Margin = new Padding(2);
             MakeTextBox.Name = "MakeTextBox";
-            MakeTextBox.Size = new Size(150, 31);
+            MakeTextBox.Size = new Size(106, 23);
             MakeTextBox.TabIndex = 10;
             // 
             // label3
             // 
             label3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label3.AutoSize = true;
-            label3.Location = new Point(8, 334);
+            label3.Location = new Point(6, 200);
+            label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(55, 25);
+            label3.Size = new Size(36, 15);
             label3.TabIndex = 11;
             label3.Text = "Make";
             // 
             // CarIDTextBox
             // 
-            CarIDTextBox.Location = new Point(73, 292);
+            CarIDTextBox.Location = new Point(51, 175);
+            CarIDTextBox.Margin = new Padding(2);
             CarIDTextBox.Name = "CarIDTextBox";
-            CarIDTextBox.Size = new Size(150, 31);
+            CarIDTextBox.Size = new Size(106, 23);
             CarIDTextBox.TabIndex = 8;
             // 
             // label2
             // 
             label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label2.AutoSize = true;
-            label2.Location = new Point(8, 291);
+            label2.Location = new Point(6, 175);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(56, 25);
+            label2.Size = new Size(36, 15);
             label2.TabIndex = 9;
             label2.Text = "CarID";
             // 
             // CTIDTextBox
             // 
-            CTIDTextBox.Location = new Point(580, 353);
+            CTIDTextBox.Location = new Point(406, 212);
+            CTIDTextBox.Margin = new Padding(2);
             CTIDTextBox.Name = "CTIDTextBox";
-            CTIDTextBox.Size = new Size(150, 31);
+            CTIDTextBox.Size = new Size(106, 23);
             CTIDTextBox.TabIndex = 22;
             // 
             // label1
             // 
             label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
-            label1.Location = new Point(503, 355);
+            label1.Location = new Point(352, 213);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(50, 25);
+            label1.Size = new Size(32, 15);
             label1.TabIndex = 7;
             label1.Text = "CTID";
             // 
             // SearchTextBox
             // 
             SearchTextBox.Anchor = AnchorStyles.Top;
-            SearchTextBox.Location = new Point(301, 219);
+            SearchTextBox.Location = new Point(211, 131);
+            SearchTextBox.Margin = new Padding(2);
             SearchTextBox.Name = "SearchTextBox";
-            SearchTextBox.Size = new Size(279, 31);
+            SearchTextBox.Size = new Size(196, 23);
             SearchTextBox.TabIndex = 6;
             // 
             // SearchComboBox
             // 
             SearchComboBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             SearchComboBox.FormattingEnabled = true;
-            SearchComboBox.Location = new Point(8, 219);
+            SearchComboBox.Location = new Point(6, 131);
+            SearchComboBox.Margin = new Padding(2);
             SearchComboBox.Name = "SearchComboBox";
-            SearchComboBox.Size = new Size(279, 33);
+            SearchComboBox.Size = new Size(196, 23);
             SearchComboBox.TabIndex = 5;
             // 
             // SearchBtn
             // 
             SearchBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            SearchBtn.Location = new Point(608, 221);
+            SearchBtn.Location = new Point(426, 133);
+            SearchBtn.Margin = new Padding(2);
             SearchBtn.Name = "SearchBtn";
-            SearchBtn.Size = new Size(273, 33);
+            SearchBtn.Size = new Size(191, 20);
             SearchBtn.TabIndex = 4;
             SearchBtn.Text = "Search";
             SearchBtn.UseVisualStyleBackColor = true;
@@ -288,21 +310,24 @@
             // ModifyBtn
             // 
             ModifyBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            ModifyBtn.Location = new Point(736, 316);
+            ModifyBtn.Location = new Point(515, 190);
+            ModifyBtn.Margin = new Padding(2);
             ModifyBtn.Name = "ModifyBtn";
-            ModifyBtn.Size = new Size(145, 50);
+            ModifyBtn.Size = new Size(102, 30);
             ModifyBtn.TabIndex = 3;
             ModifyBtn.Text = "Modify";
             ModifyBtn.UseVisualStyleBackColor = true;
+            ModifyBtn.Click += ModifyBtn_Click;
             // 
             // DeleteBtn
             // 
             DeleteBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             DeleteBtn.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            DeleteBtn.Location = new Point(736, 372);
+            DeleteBtn.Location = new Point(515, 223);
+            DeleteBtn.Margin = new Padding(2);
             DeleteBtn.Name = "DeleteBtn";
-            DeleteBtn.Padding = new Padding(5, 0, 5, 5);
-            DeleteBtn.Size = new Size(145, 50);
+            DeleteBtn.Padding = new Padding(4, 0, 4, 3);
+            DeleteBtn.Size = new Size(102, 30);
             DeleteBtn.TabIndex = 2;
             DeleteBtn.Text = "Delete";
             DeleteBtn.UseVisualStyleBackColor = true;
@@ -310,9 +335,10 @@
             // AddBtn
             // 
             AddBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            AddBtn.Location = new Point(736, 260);
+            AddBtn.Location = new Point(515, 156);
+            AddBtn.Margin = new Padding(2);
             AddBtn.Name = "AddBtn";
-            AddBtn.Size = new Size(145, 50);
+            AddBtn.Size = new Size(102, 30);
             AddBtn.TabIndex = 1;
             AddBtn.Text = "Add";
             AddBtn.UseVisualStyleBackColor = true;
@@ -323,25 +349,13 @@
             Car.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             Car.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             Car.Columns.AddRange(new DataGridViewColumn[] { CarID, Make, Model, Year, Mileage, Registration, LicensePlate, CTID });
-            Car.Location = new Point(6, 6);
+            Car.Location = new Point(4, 4);
+            Car.Margin = new Padding(2);
             Car.Name = "Car";
             Car.RowHeadersWidth = 62;
             Car.RowTemplate.Height = 33;
-            Car.Size = new Size(875, 191);
+            Car.Size = new Size(612, 115);
             Car.TabIndex = 0;
-            // 
-            // tabControl1
-            // 
-            tabControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            tabControl1.Controls.Add(tabPage1);
-            tabControl1.Controls.Add(tabPage2);
-            tabControl1.Controls.Add(tabPage3);
-            tabControl1.Location = new Point(-2, -1);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(899, 469);
-            tabControl1.SizeMode = TabSizeMode.FillToRight;
-            tabControl1.TabIndex = 0;
             // 
             // CarID
             // 
@@ -399,13 +413,28 @@
             CTID.Name = "CTID";
             CTID.Width = 50;
             // 
+            // tabControl1
+            // 
+            tabControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(tabPage3);
+            tabControl1.Location = new Point(-1, -1);
+            tabControl1.Margin = new Padding(2);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(629, 281);
+            tabControl1.SizeMode = TabSizeMode.FillToRight;
+            tabControl1.TabIndex = 0;
+            // 
             // MainPage
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
-            ClientSize = new Size(895, 465);
+            ClientSize = new Size(626, 279);
             Controls.Add(tabControl1);
+            Margin = new Padding(2);
             Name = "MainPage";
             Text = "Car Rentals";
             tabPage1.ResumeLayout(false);
