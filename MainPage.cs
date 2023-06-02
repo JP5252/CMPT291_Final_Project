@@ -1,6 +1,7 @@
 using Azure;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Threading.Channels;
 
 namespace CMPT291_Final_Project
 {
@@ -59,6 +60,10 @@ namespace CMPT291_Final_Project
         private void ModifyBtn_Click(object sender, EventArgs e)
         {
             String SelectedID = CarIDTextBox.Text;
+
+            // Don't modify on empty selection
+            if (SelectedID == "") return;
+
             myCommand.CommandText = $"SELECT * FROM Car WHERE CarID = {SelectedID}";
             SqlDataReader Data = myCommand.ExecuteReader();
 
@@ -112,6 +117,31 @@ namespace CMPT291_Final_Project
             }
         }
 
+        private void DeleteBtn_Click(object sender, EventArgs e)
+        {
+            int RowsSelected = Car.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            String SelectedCars = "";
+            for (int i = 0; i < RowsSelected; i++)
+            {
+                SelectedCars += Car.SelectedRows[i].Cells["CarID"].Value;
+                if (i != RowsSelected - 1) SelectedCars += ", ";
+            }
+
+            DialogResult ConfirmDeletion = MessageBox.Show(
+                $"Confirm deletion of these cars: {SelectedCars}", "Confirmation",
+                MessageBoxButtons.YesNo
+            );
+
+            if (ConfirmDeletion == DialogResult.Yes)
+            {
+                myCommand.CommandText = $"DELETE FROM Car WHERE CarID IN ({SelectedCars})";
+                MessageBox.Show($"Query used: {myCommand.CommandText}", "Debugging");
+                myCommand.ExecuteNonQuery();
+                myCommand.Dispose();
+            }
+            ShowAllCars();
+        }
+
         private void ShowAllCars()
         {
             myCommand.CommandText = "select * from Car";
@@ -134,6 +164,5 @@ namespace CMPT291_Final_Project
                 MessageBox.Show(e3.ToString(), "Error");
             }
         }
-
     }
 }

@@ -331,6 +331,7 @@
             DeleteBtn.TabIndex = 2;
             DeleteBtn.Text = "Delete";
             DeleteBtn.UseVisualStyleBackColor = true;
+            DeleteBtn.Click += DeleteBtn_Click;
             // 
             // AddBtn
             // 
@@ -352,16 +353,22 @@
             Car.Location = new Point(4, 4);
             Car.Margin = new Padding(2);
             Car.Name = "Car";
+            Car.ReadOnly = true;
             Car.RowHeadersWidth = 62;
             Car.RowTemplate.Height = 33;
+            Car.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             Car.Size = new Size(612, 115);
             Car.TabIndex = 0;
+            Car.AllowUserToAddRows = false;
+            Car.RowHeadersVisible = false;
+            Car.AllowUserToResizeRows = false;
             // 
             // CarID
             // 
             CarID.HeaderText = "CarID";
             CarID.MinimumWidth = 8;
             CarID.Name = "CarID";
+            CarID.ReadOnly = true;
             CarID.Width = 80;
             // 
             // Make
@@ -369,6 +376,7 @@
             Make.HeaderText = "Make";
             Make.MinimumWidth = 8;
             Make.Name = "Make";
+            Make.ReadOnly = true;
             Make.Width = 120;
             // 
             // Model
@@ -376,6 +384,7 @@
             Model.HeaderText = "Model";
             Model.MinimumWidth = 8;
             Model.Name = "Model";
+            Model.ReadOnly = true;
             Model.Width = 120;
             // 
             // Year
@@ -383,6 +392,7 @@
             Year.HeaderText = "Year";
             Year.MinimumWidth = 8;
             Year.Name = "Year";
+            Year.ReadOnly = true;
             Year.Width = 80;
             // 
             // Mileage
@@ -390,6 +400,7 @@
             Mileage.HeaderText = "Mileage";
             Mileage.MinimumWidth = 8;
             Mileage.Name = "Mileage";
+            Mileage.ReadOnly = true;
             Mileage.Width = 120;
             // 
             // Registration
@@ -397,6 +408,7 @@
             Registration.HeaderText = "Registration";
             Registration.MinimumWidth = 8;
             Registration.Name = "Registration";
+            Registration.ReadOnly = true;
             Registration.Width = 120;
             // 
             // LicensePlate
@@ -404,6 +416,7 @@
             LicensePlate.HeaderText = "LicensePlate";
             LicensePlate.MinimumWidth = 8;
             LicensePlate.Name = "LicensePlate";
+            LicensePlate.ReadOnly = true;
             LicensePlate.Width = 110;
             // 
             // CTID
@@ -411,6 +424,7 @@
             CTID.HeaderText = "CTID";
             CTID.MinimumWidth = 8;
             CTID.Name = "CTID";
+            CTID.ReadOnly = true;
             CTID.Width = 50;
             // 
             // tabControl1
