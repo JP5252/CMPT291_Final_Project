@@ -15,8 +15,7 @@ namespace CMPT291_Final_Project
         {
             InitializeComponent();
             ///////////////////////////////
-            SearchComboBox.Items.Clear();
-            SearchComboBox.Items.Add("Show all");
+
             //////////////////////////////////
 
             String connectionString = "Server = DESKTOP-JOHN; Database = CMPT_291_FinalProject; Trusted_Connection = yes;";
@@ -109,11 +108,25 @@ namespace CMPT291_Final_Project
 
         private void SearchBtn_Click(object sender, EventArgs e)
         {
-
             // if selection is "Show all" call ShowAllCars()
-            if (SearchComboBox.Text == "Show all")
+            if (SearchComboBox.Text == "Show All")
             {
                 ShowAllCars();
+            }
+            else
+            {
+                myCommand.CommandText = $"SELECT * FROM Car WHERE " +
+                    $"{SearchComboBox.Text} LIKE '{SearchTextBox.Text}%';";
+                myReader = myCommand.ExecuteReader();
+
+                Car.Rows.Clear();
+                while (myReader.Read())
+                {
+                    Car.Rows.Add(myReader["CarID"].ToString(), myReader["Make"].ToString(), myReader["Model"].ToString(), myReader["Year"].ToString(),
+                    myReader["Mileage"].ToString(), myReader["Registration"].ToString(), myReader["LicensePlate"].ToString(), myReader["CTID"].ToString());
+                }
+
+                myReader.Close();
             }
         }
 
