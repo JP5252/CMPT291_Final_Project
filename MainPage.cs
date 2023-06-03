@@ -1,6 +1,7 @@
 using Azure;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Threading.Channels;
 
 namespace CMPT291_Final_Project
 {
@@ -14,8 +15,7 @@ namespace CMPT291_Final_Project
         {
             InitializeComponent();
             ///////////////////////////////
-            SearchComboBox.Items.Clear();
-            SearchComboBox.Items.Add("Show all");
+
             //////////////////////////////////
 
             String connectionString = "Server = DESKTOP-JOHN; Database = CMPT_291_FinalProject; Trusted_Connection = yes;";
@@ -59,6 +59,10 @@ namespace CMPT291_Final_Project
         private void ModifyBtn_Click(object sender, EventArgs e)
         {
             String SelectedID = CarIDTextBox.Text;
+
+            // Don't modify on empty selection
+            if (SelectedID == "") return;
+
             myCommand.CommandText = $"SELECT * FROM Car WHERE CarID = {SelectedID}";
             SqlDataReader Data = myCommand.ExecuteReader();
 
@@ -104,12 +108,51 @@ namespace CMPT291_Final_Project
 
         private void SearchBtn_Click(object sender, EventArgs e)
         {
-
             // if selection is "Show all" call ShowAllCars()
-            if (SearchComboBox.Text == "Show all")
+            if (SearchComboBox.Text == "Show All")
             {
                 ShowAllCars();
             }
+            else
+            {
+                myCommand.CommandText = $"SELECT * FROM Car WHERE " +
+                    $"{SearchComboBox.Text} LIKE '{SearchTextBox.Text}%';";
+                myReader = myCommand.ExecuteReader();
+
+                Car.Rows.Clear();
+                while (myReader.Read())
+                {
+                    Car.Rows.Add(myReader["CarID"].ToString(), myReader["Make"].ToString(), myReader["Model"].ToString(), myReader["Year"].ToString(),
+                    myReader["Mileage"].ToString(), myReader["Registration"].ToString(), myReader["LicensePlate"].ToString(), myReader["CTID"].ToString());
+                }
+
+                myReader.Close();
+            }
+        }
+
+        private void DeleteBtn_Click(object sender, EventArgs e)
+        {
+            int RowsSelected = Car.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            String SelectedCars = "";
+            for (int i = 0; i < RowsSelected; i++)
+            {
+                SelectedCars += Car.SelectedRows[i].Cells["CarID"].Value;
+                if (i != RowsSelected - 1) SelectedCars += ", ";
+            }
+
+            DialogResult ConfirmDeletion = MessageBox.Show(
+                $"Confirm deletion of these cars: {SelectedCars}", "Confirmation",
+                MessageBoxButtons.YesNo
+            );
+
+            if (ConfirmDeletion == DialogResult.Yes)
+            {
+                myCommand.CommandText = $"DELETE FROM Car WHERE CarID IN ({SelectedCars})";
+                MessageBox.Show($"Query used: {myCommand.CommandText}", "Debugging");
+                myCommand.ExecuteNonQuery();
+                myCommand.Dispose();
+            }
+            ShowAllCars();
         }
 
         private void ShowAllCars()
@@ -134,6 +177,5 @@ namespace CMPT291_Final_Project
                 MessageBox.Show(e3.ToString(), "Error");
             }
         }
-
     }
 }
