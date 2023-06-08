@@ -47,113 +47,139 @@ namespace CMPT291_Final_Project
 
                 myCommand.ExecuteNonQuery();
                 myCommand.Dispose();
+                // Show all cars after adding one
+                ShowAllCars();
             }
             catch (Exception e2)
             {
                 MessageBox.Show(e2.ToString(), "Error");
             }
 
-            // Show all cars after adding one
-            ShowAllCars();
+
         }
 
         private void ModifyBtn_Click(object sender, EventArgs e)
         {
-            String SelectedID = CarIDTextBox.Text;
-
-            // Don't modify on empty selection
-            if (SelectedID == "") return;
-
-            myCommand.CommandText = $"SELECT * FROM Car WHERE CarID = {SelectedID}";
-            SqlDataReader Data = myCommand.ExecuteReader();
-
-            if (Data.Read())
+            try
             {
-                String Changes = (
-                    $"Please confirm these changes for Car ID {CarIDTextBox.Text} (Old -> New):\n\n" +
-                    $"Make: {Data["Make"]} -> {MakeTextBox.Text}\n" +
-                    $"Model: {Data["Model"]} -> {ModelTextBox.Text}\n" +
-                    $"Year: {Data["Year"]} -> {YearTextBox.Text}\n" +
-                    $"Mileage: {Data["Mileage"]} -> {MileageTextBox.Text}\n" +
-                    $"Registration: {Data["Registration"]} -> {RegistrationTextBox.Text}\n" +
-                    $"License Plate: {Data["LicensePlate"]} -> {LicensePlateTextBox.Text}\n" +
-                    $"CTID: {Data["CTID"]} -> {CTIDTextBox.Text}"
-                );
+                String SelectedID = CarIDTextBox.Text;
 
-                DialogResult ConfirmModification = MessageBox.Show(
-                Changes, "Confirmation", MessageBoxButtons.YesNo
-                );
+                // Don't modify on empty selection
+                if (SelectedID == "") return;
 
-                Data.Close();
+                myCommand.CommandText = $"SELECT * FROM Car WHERE CarID = {SelectedID}";
+                SqlDataReader Data = myCommand.ExecuteReader();
 
-                if (ConfirmModification == DialogResult.Yes)
+                if (Data.Read())
                 {
-                    // Modify row
-                    myCommand.CommandText = (
-                        $"UPDATE Car " +
-                        $"SET Make = '{MakeTextBox.Text}', " +
-                        $"Model = '{ModelTextBox.Text}', " +
-                        $"Year = {YearTextBox.Text}, " +
-                        $"Mileage = {MileageTextBox.Text}, " +
-                        $"Registration = '{RegistrationTextBox.Text}', " +
-                        $"LicensePlate = '{LicensePlateTextBox.Text}', " +
-                        $"CTID = '{CTIDTextBox.Text}' " +
-                        $"WHERE CarID = {SelectedID};"
+                    String Changes = (
+                        $"Please confirm these changes for Car ID {CarIDTextBox.Text} (Old -> New):\n\n" +
+                        $"Make: {Data["Make"]} -> {MakeTextBox.Text}\n" +
+                        $"Model: {Data["Model"]} -> {ModelTextBox.Text}\n" +
+                        $"Year: {Data["Year"]} -> {YearTextBox.Text}\n" +
+                        $"Mileage: {Data["Mileage"]} -> {MileageTextBox.Text}\n" +
+                        $"Registration: {Data["Registration"]} -> {RegistrationTextBox.Text}\n" +
+                        $"License Plate: {Data["LicensePlate"]} -> {LicensePlateTextBox.Text}\n" +
+                        $"CTID: {Data["CTID"]} -> {CTIDTextBox.Text}"
                     );
-                    myCommand.ExecuteNonQuery();
-                    myCommand.Dispose();
+
+                    DialogResult ConfirmModification = MessageBox.Show(
+                    Changes, "Confirmation", MessageBoxButtons.YesNo
+                    );
+
+                    Data.Close();
+
+                    if (ConfirmModification == DialogResult.Yes)
+                    {
+                        // Modify row
+                        myCommand.CommandText = (
+                            $"UPDATE Car " +
+                            $"SET Make = '{MakeTextBox.Text}', " +
+                            $"Model = '{ModelTextBox.Text}', " +
+                            $"Year = {YearTextBox.Text}, " +
+                            $"Mileage = {MileageTextBox.Text}, " +
+                            $"Registration = '{RegistrationTextBox.Text}', " +
+                            $"LicensePlate = '{LicensePlateTextBox.Text}', " +
+                            $"CTID = '{CTIDTextBox.Text}' " +
+                            $"WHERE CarID = {SelectedID};"
+                        );
+                        myCommand.ExecuteNonQuery();
+                        myCommand.Dispose();
+                    }
                 }
+                ShowAllCars();
             }
-            ShowAllCars();
+            catch (Exception e2)
+            {
+                MessageBox.Show(e2.ToString(), "Error");
+            }
+
+
         }
 
         private void SearchBtn_Click(object sender, EventArgs e)
         {
-            // if selection is "Show all" call ShowAllCars()
-            if (SearchComboBox.Text == "Show All")
+            try
             {
-                ShowAllCars();
-            }
-            else
-            {
-                myCommand.CommandText = $"SELECT * FROM Car WHERE " +
-                    $"{SearchComboBox.Text.Replace(" ", "")} LIKE '{SearchTextBox.Text}%';";
-                myReader = myCommand.ExecuteReader();
-
-                Car.Rows.Clear();
-                while (myReader.Read())
+                // if selection is "Show all" call ShowAllCars()
+                if (SearchComboBox.Text == "Show All")
                 {
-                    Car.Rows.Add(myReader["CarID"].ToString(), myReader["Make"].ToString(), myReader["Model"].ToString(), myReader["Year"].ToString(),
-                    myReader["Mileage"].ToString(), myReader["Registration"].ToString(), myReader["LicensePlate"].ToString(), myReader["CTID"].ToString());
+                    ShowAllCars();
                 }
+                else
+                {
+                    myCommand.CommandText = $"SELECT * FROM Car WHERE " +
+                        $"{SearchComboBox.Text.Replace(" ", "")} LIKE '{SearchTextBox.Text}%';";
+                    myReader = myCommand.ExecuteReader();
 
-                myReader.Close();
+                    Car.Rows.Clear();
+                    while (myReader.Read())
+                    {
+                        Car.Rows.Add(myReader["CarID"].ToString(), myReader["Make"].ToString(), myReader["Model"].ToString(), myReader["Year"].ToString(),
+                        myReader["Mileage"].ToString(), myReader["Registration"].ToString(), myReader["LicensePlate"].ToString(), myReader["CTID"].ToString());
+                    }
+
+                    myReader.Close();
+                }
             }
+
+            catch (Exception e2)
+            {
+                MessageBox.Show(e2.ToString(), "Error");
+            }
+
         }
 
         private void DeleteBtn_Click(object sender, EventArgs e)
         {
-            int RowsSelected = Car.Rows.GetRowCount(DataGridViewElementStates.Selected);
-            String SelectedCars = "";
-            for (int i = 0; i < RowsSelected; i++)
+            try
             {
-                SelectedCars += Car.SelectedRows[i].Cells["CarID"].Value;
-                if (i != RowsSelected - 1) SelectedCars += ", ";
+                int RowsSelected = Car.Rows.GetRowCount(DataGridViewElementStates.Selected);
+                String SelectedCars = "";
+                for (int i = 0; i < RowsSelected; i++)
+                {
+                    SelectedCars += Car.SelectedRows[i].Cells["CarID"].Value;
+                    if (i != RowsSelected - 1) SelectedCars += ", ";
+                }
+
+                DialogResult ConfirmDeletion = MessageBox.Show(
+                    $"Confirm deletion of these cars: {SelectedCars}", "Confirmation",
+                    MessageBoxButtons.YesNo
+                );
+
+                if (ConfirmDeletion == DialogResult.Yes)
+                {
+                    myCommand.CommandText = $"DELETE FROM Car WHERE CarID IN ({SelectedCars})";
+                    MessageBox.Show($"Query used: {myCommand.CommandText}", "Debugging");
+                    myCommand.ExecuteNonQuery();
+                    myCommand.Dispose();
+                }
+                ShowAllCars();
             }
-
-            DialogResult ConfirmDeletion = MessageBox.Show(
-                $"Confirm deletion of these cars: {SelectedCars}", "Confirmation",
-                MessageBoxButtons.YesNo
-            );
-
-            if (ConfirmDeletion == DialogResult.Yes)
+            catch (Exception e2)
             {
-                myCommand.CommandText = $"DELETE FROM Car WHERE CarID IN ({SelectedCars})";
-                MessageBox.Show($"Query used: {myCommand.CommandText}", "Debugging");
-                myCommand.ExecuteNonQuery();
-                myCommand.Dispose();
+                MessageBox.Show(e2.ToString(), "Error");
             }
-            ShowAllCars();
         }
 
         private void ShowAllCars()
