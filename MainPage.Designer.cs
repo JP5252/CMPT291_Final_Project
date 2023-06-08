@@ -637,7 +637,7 @@
             tabControl1.SizeMode = TabSizeMode.FillToRight;
             tabControl1.TabIndex = 0;
             // 
-            // dataGridView1
+            // Rental
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToResizeRows = false;
@@ -646,7 +646,7 @@
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7, dataGridViewTextBoxColumn8 });
             dataGridView1.Location = new Point(5, 4);
             dataGridView1.Margin = new Padding(2);
-            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Name = "Rental";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidth = 62;
@@ -655,69 +655,69 @@
             dataGridView1.Size = new Size(612, 115);
             dataGridView1.TabIndex = 27;
             // 
-            // dataGridViewTextBoxColumn1
+            // RentalID
             // 
             dataGridViewTextBoxColumn1.HeaderText = "RentalID";
             dataGridViewTextBoxColumn1.MinimumWidth = 8;
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.Name = "RentalID";
             dataGridViewTextBoxColumn1.ReadOnly = true;
             dataGridViewTextBoxColumn1.Width = 80;
             // 
-            // dataGridViewTextBoxColumn2
+            // DateTo
             // 
             dataGridViewTextBoxColumn2.HeaderText = "DateTo";
             dataGridViewTextBoxColumn2.MinimumWidth = 8;
-            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.Name = "DateTo";
             dataGridViewTextBoxColumn2.ReadOnly = true;
             dataGridViewTextBoxColumn2.Width = 120;
             // 
-            // dataGridViewTextBoxColumn3
+            // DateFrom
             // 
             dataGridViewTextBoxColumn3.HeaderText = "DateFrom";
             dataGridViewTextBoxColumn3.MinimumWidth = 8;
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.Name = "DateFrom";
             dataGridViewTextBoxColumn3.ReadOnly = true;
             dataGridViewTextBoxColumn3.Width = 120;
             // 
-            // dataGridViewTextBoxColumn4
+            // Price
             // 
             dataGridViewTextBoxColumn4.HeaderText = "Price";
             dataGridViewTextBoxColumn4.MinimumWidth = 8;
-            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            dataGridViewTextBoxColumn4.Name = "Price";
             dataGridViewTextBoxColumn4.ReadOnly = true;
             dataGridViewTextBoxColumn4.Width = 80;
             // 
-            // dataGridViewTextBoxColumn5
+            // CustomerID
             // 
             dataGridViewTextBoxColumn5.HeaderText = "CustomerID";
             dataGridViewTextBoxColumn5.MinimumWidth = 8;
-            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            dataGridViewTextBoxColumn5.Name = "CustomerID";
             dataGridViewTextBoxColumn5.ReadOnly = true;
             dataGridViewTextBoxColumn5.Width = 120;
             // 
-            // dataGridViewTextBoxColumn6
+            // CarID
             // 
             dataGridViewTextBoxColumn6.HeaderText = "CarID";
             dataGridViewTextBoxColumn6.MinimumWidth = 8;
-            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            dataGridViewTextBoxColumn6.Name = "RentedCarID";
             dataGridViewTextBoxColumn6.ReadOnly = true;
-            dataGridViewTextBoxColumn6.Width = 120;
+            dataGridViewTextBoxColumn6.Width = 70;
             // 
-            // dataGridViewTextBoxColumn7
+            // BranchIDIn
             // 
             dataGridViewTextBoxColumn7.HeaderText = "BranchIDIn";
             dataGridViewTextBoxColumn7.MinimumWidth = 8;
-            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            dataGridViewTextBoxColumn7.Name = "BranchIDIn";
             dataGridViewTextBoxColumn7.ReadOnly = true;
             dataGridViewTextBoxColumn7.Width = 110;
             // 
-            // dataGridViewTextBoxColumn8
+            // BranchIDOut
             // 
             dataGridViewTextBoxColumn8.HeaderText = "BranchIDOut";
             dataGridViewTextBoxColumn8.MinimumWidth = 8;
-            dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            dataGridViewTextBoxColumn8.Name = "BranchIDOut";
             dataGridViewTextBoxColumn8.ReadOnly = true;
-            dataGridViewTextBoxColumn8.Width = 50;
+            dataGridViewTextBoxColumn8.Width = 120;
             // 
             // MainPage
             // 
