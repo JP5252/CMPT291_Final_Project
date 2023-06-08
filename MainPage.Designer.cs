@@ -296,7 +296,7 @@
             SearchComboBox.TabIndex = 5;
             SearchComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             SearchComboBox.DataSource = new List<String> { 
-                "Show All", "Make", "Model",
+                "Show All", "Car ID", "Make", "Model",
                 "Year", "Mileage", "Registration",
                 "License Plate", "CTID"
             };
