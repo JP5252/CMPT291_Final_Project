@@ -22,6 +22,7 @@ namespace CMPT291_Final_Project
 
             SqlConnection myConnection = new SqlConnection(connectionString); // Timeout in seconds
 
+
             try
             {
                 myConnection.Open(); // Open connection
@@ -116,7 +117,7 @@ namespace CMPT291_Final_Project
             else
             {
                 myCommand.CommandText = $"SELECT * FROM Car WHERE " +
-                    $"{SearchComboBox.Text} LIKE '{SearchTextBox.Text}%';";
+                    $"{SearchComboBox.Text.Replace(" ", "")} LIKE '{SearchTextBox.Text}%';";
                 myReader = myCommand.ExecuteReader();
 
                 Car.Rows.Clear();

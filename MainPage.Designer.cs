@@ -484,6 +484,12 @@
             SearchComboBox.Name = "SearchComboBox";
             SearchComboBox.Size = new Size(196, 23);
             SearchComboBox.TabIndex = 5;
+            SearchComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            SearchComboBox.DataSource = new List<String> { 
+                "Show All", "Car ID", "Make", "Model",
+                "Year", "Mileage", "Registration",
+                "License Plate", "CTID"
+            };
             // 
             // SearchBtn
             // 
