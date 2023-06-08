@@ -18,7 +18,7 @@ namespace CMPT291_Final_Project
 
             //////////////////////////////////
 
-            String connectionString = "Server = DESKTOP-JOHN; Database = CMPT_291_FinalProject; Trusted_Connection = yes;";
+            String connectionString = "Server = DESKTOP-4BKMUEJ; Database = CMPT_291_FinalProject; Trusted_Connection = yes;";
 
             SqlConnection myConnection = new SqlConnection(connectionString); // Timeout in seconds
 
