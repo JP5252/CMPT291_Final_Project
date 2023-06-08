@@ -106,6 +106,8 @@ namespace CMPT291_Final_Project
                         myCommand.Dispose();
                     }
                 }
+                else Data.Close();
+
                 ShowAllCars();
             }
             catch (Exception e2)
