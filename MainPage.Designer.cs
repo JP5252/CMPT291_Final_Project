@@ -573,7 +573,7 @@
             Make.MinimumWidth = 8;
             Make.Name = "Make";
             Make.ReadOnly = true;
-            Make.Width = 140;
+            Make.Width = 150;
             // 
             // Model
             // 
