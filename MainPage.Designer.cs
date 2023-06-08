@@ -467,7 +467,7 @@
             // SearchTextBox
             // 
             SearchTextBox.Anchor = AnchorStyles.Top;
-            SearchTextBox.Location = new Point(211, 131);
+            SearchTextBox.Location = new Point(215, 136);
             SearchTextBox.Margin = new Padding(2);
             SearchTextBox.Name = "SearchTextBox";
             SearchTextBox.Size = new Size(196, 23);
@@ -494,7 +494,7 @@
             // SearchBtn
             // 
             SearchBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            SearchBtn.Location = new Point(426, 133);
+            SearchBtn.Location = new Point(426, 131);
             SearchBtn.Margin = new Padding(2);
             SearchBtn.Name = "SearchBtn";
             SearchBtn.Size = new Size(191, 20);
@@ -506,7 +506,7 @@
             // ModifyBtn
             // 
             ModifyBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            ModifyBtn.Location = new Point(515, 190);
+            ModifyBtn.Location = new Point(515, 189);
             ModifyBtn.Margin = new Padding(2);
             ModifyBtn.Name = "ModifyBtn";
             ModifyBtn.Size = new Size(102, 30);
@@ -519,7 +519,7 @@
             // 
             DeleteBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             DeleteBtn.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            DeleteBtn.Location = new Point(515, 223);
+            DeleteBtn.Location = new Point(515, 227);
             DeleteBtn.Margin = new Padding(2);
             DeleteBtn.Name = "DeleteBtn";
             DeleteBtn.Padding = new Padding(4, 0, 4, 3);
@@ -565,7 +565,7 @@
             CarID.MinimumWidth = 8;
             CarID.Name = "CarID";
             CarID.ReadOnly = true;
-            CarID.Width = 80;
+            CarID.Width = 70;
             // 
             // Make
             // 
@@ -573,7 +573,7 @@
             Make.MinimumWidth = 8;
             Make.Name = "Make";
             Make.ReadOnly = true;
-            Make.Width = 120;
+            Make.Width = 140;
             // 
             // Model
             // 
@@ -581,7 +581,7 @@
             Model.MinimumWidth = 8;
             Model.Name = "Model";
             Model.ReadOnly = true;
-            Model.Width = 120;
+            Model.Width = 180;
             // 
             // Year
             // 
@@ -589,7 +589,7 @@
             Year.MinimumWidth = 8;
             Year.Name = "Year";
             Year.ReadOnly = true;
-            Year.Width = 80;
+            Year.Width = 60;
             // 
             // Mileage
             // 
@@ -597,7 +597,7 @@
             Mileage.MinimumWidth = 8;
             Mileage.Name = "Mileage";
             Mileage.ReadOnly = true;
-            Mileage.Width = 120;
+            Mileage.Width = 90;
             // 
             // Registration
             // 
@@ -621,7 +621,7 @@
             CTID.MinimumWidth = 8;
             CTID.Name = "CTID";
             CTID.ReadOnly = true;
-            CTID.Width = 50;
+            CTID.Width = 70;
             // 
             // tabControl1
             // 
