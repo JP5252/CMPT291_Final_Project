@@ -36,7 +36,13 @@
             reportcombobox = new ComboBox();
             ReportScreenHeader = new Label();
             tabPage2 = new TabPage();
+            dateTimePicker1 = new DateTimePicker();
             dataGridView1 = new DataGridView();
+            RentalCarID = new DataGridViewTextBoxColumn();
+            RentalCarMake = new DataGridViewTextBoxColumn();
+            RentalCarModel = new DataGridViewTextBoxColumn();
+            RentalCarYear = new DataGridViewTextBoxColumn();
+            RentalCarPrice = new DataGridViewTextBoxColumn();
             button1 = new Button();
             textBox7 = new TextBox();
             label15 = new Label();
@@ -46,9 +52,7 @@
             label13 = new Label();
             textBox6 = new TextBox();
             label14 = new Label();
-            textBox3 = new TextBox();
             label11 = new Label();
-            textBox2 = new TextBox();
             label10 = new Label();
             tabPage1 = new TabPage();
             LicensePlateTextBox = new TextBox();
@@ -83,11 +87,7 @@
             LicensePlate = new DataGridViewTextBoxColumn();
             CTID = new DataGridViewTextBoxColumn();
             tabControl1 = new TabControl();
-            RentalCarID = new DataGridViewTextBoxColumn();
-            RentalCarMake = new DataGridViewTextBoxColumn();
-            RentalCarModel = new DataGridViewTextBoxColumn();
-            RentalCarYear = new DataGridViewTextBoxColumn();
-            RentalCarPrice = new DataGridViewTextBoxColumn();
+            dateTimePicker2 = new DateTimePicker();
             tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ResultsDataGrid).BeginInit();
             tabPage2.SuspendLayout();
@@ -173,6 +173,8 @@
             // tabPage2
             // 
             tabPage2.BackColor = Color.Transparent;
+            tabPage2.Controls.Add(dateTimePicker2);
+            tabPage2.Controls.Add(dateTimePicker1);
             tabPage2.Controls.Add(dataGridView1);
             tabPage2.Controls.Add(button1);
             tabPage2.Controls.Add(textBox7);
@@ -183,9 +185,7 @@
             tabPage2.Controls.Add(label13);
             tabPage2.Controls.Add(textBox6);
             tabPage2.Controls.Add(label14);
-            tabPage2.Controls.Add(textBox3);
             tabPage2.Controls.Add(label11);
-            tabPage2.Controls.Add(textBox2);
             tabPage2.Controls.Add(label10);
             tabPage2.Location = new Point(4, 34);
             tabPage2.Name = "tabPage2";
@@ -194,6 +194,13 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Rentals";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(508, 248);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(216, 31);
+            dateTimePicker1.TabIndex = 28;
             // 
             // dataGridView1
             // 
@@ -211,6 +218,46 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(874, 222);
             dataGridView1.TabIndex = 27;
+            // 
+            // RentalCarID
+            // 
+            RentalCarID.HeaderText = "CarID";
+            RentalCarID.MinimumWidth = 8;
+            RentalCarID.Name = "RentalCarID";
+            RentalCarID.ReadOnly = true;
+            RentalCarID.Width = 80;
+            // 
+            // RentalCarMake
+            // 
+            RentalCarMake.HeaderText = "Make";
+            RentalCarMake.MinimumWidth = 8;
+            RentalCarMake.Name = "RentalCarMake";
+            RentalCarMake.ReadOnly = true;
+            RentalCarMake.Width = 150;
+            // 
+            // RentalCarModel
+            // 
+            RentalCarModel.HeaderText = "Model";
+            RentalCarModel.MinimumWidth = 8;
+            RentalCarModel.Name = "RentalCarModel";
+            RentalCarModel.ReadOnly = true;
+            RentalCarModel.Width = 150;
+            // 
+            // RentalCarYear
+            // 
+            RentalCarYear.HeaderText = "Year";
+            RentalCarYear.MinimumWidth = 8;
+            RentalCarYear.Name = "RentalCarYear";
+            RentalCarYear.ReadOnly = true;
+            RentalCarYear.Width = 150;
+            // 
+            // RentalCarPrice
+            // 
+            RentalCarPrice.HeaderText = "Price";
+            RentalCarPrice.MinimumWidth = 8;
+            RentalCarPrice.Name = "RentalCarPrice";
+            RentalCarPrice.ReadOnly = true;
+            RentalCarPrice.Width = 150;
             // 
             // button1
             // 
@@ -258,7 +305,7 @@
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(416, 250);
+            textBox5.Location = new Point(416, 309);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(150, 31);
             textBox5.TabIndex = 19;
@@ -267,7 +314,7 @@
             // 
             label13.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label13.AutoSize = true;
-            label13.Location = new Point(359, 255);
+            label13.Location = new Point(359, 314);
             label13.Name = "label13";
             label13.Size = new Size(56, 25);
             label13.TabIndex = 18;
@@ -275,7 +322,7 @@
             // 
             // textBox6
             // 
-            textBox6.Location = new Point(127, 255);
+            textBox6.Location = new Point(127, 308);
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(150, 31);
             textBox6.TabIndex = 17;
@@ -284,45 +331,31 @@
             // 
             label14.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label14.AutoSize = true;
-            label14.Location = new Point(21, 260);
+            label14.Location = new Point(21, 313);
             label14.Name = "label14";
             label14.Size = new Size(107, 25);
             label14.TabIndex = 16;
             label14.Text = "CustomerID";
             // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(416, 312);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(150, 31);
-            textBox3.TabIndex = 15;
-            // 
             // label11
             // 
             label11.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label11.AutoSize = true;
-            label11.Location = new Point(326, 317);
+            label11.Location = new Point(30, 254);
             label11.Name = "label11";
-            label11.Size = new Size(91, 25);
+            label11.Size = new Size(90, 25);
             label11.TabIndex = 14;
-            label11.Text = "DateFrom";
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(127, 311);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(150, 31);
-            textBox2.TabIndex = 13;
+            label11.Text = "Start Date";
             // 
             // label10
             // 
             label10.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label10.AutoSize = true;
-            label10.Location = new Point(60, 316);
+            label10.Location = new Point(418, 253);
             label10.Name = "label10";
-            label10.Size = new Size(67, 25);
+            label10.Size = new Size(84, 25);
             label10.TabIndex = 12;
-            label10.Text = "DateTo";
+            label10.Text = "End Date";
             // 
             // tabPage1
             // 
@@ -659,45 +692,12 @@
             tabControl1.SizeMode = TabSizeMode.FillToRight;
             tabControl1.TabIndex = 0;
             // 
-            // RentalCarID
+            // dateTimePicker2
             // 
-            RentalCarID.HeaderText = "CarID";
-            RentalCarID.MinimumWidth = 8;
-            RentalCarID.Name = "RentalCarID";
-            RentalCarID.ReadOnly = true;
-            RentalCarID.Width = 80;
-            // 
-            // RentalCarMake
-            // 
-            RentalCarMake.HeaderText = "Make";
-            RentalCarMake.MinimumWidth = 8;
-            RentalCarMake.Name = "RentalCarMake";
-            RentalCarMake.ReadOnly = true;
-            RentalCarMake.Width = 150;
-            // 
-            // RentalCarModel
-            // 
-            RentalCarModel.HeaderText = "Model";
-            RentalCarModel.MinimumWidth = 8;
-            RentalCarModel.Name = "RentalCarModel";
-            RentalCarModel.ReadOnly = true;
-            RentalCarModel.Width = 150;
-            // 
-            // RentalCarYear
-            // 
-            RentalCarYear.HeaderText = "Year";
-            RentalCarYear.MinimumWidth = 8;
-            RentalCarYear.Name = "RentalCarYear";
-            RentalCarYear.ReadOnly = true;
-            RentalCarYear.Width = 150;
-            // 
-            // RentalCarPrice
-            // 
-            RentalCarPrice.HeaderText = "Price";
-            RentalCarPrice.MinimumWidth = 8;
-            RentalCarPrice.Name = "RentalCarPrice";
-            RentalCarPrice.ReadOnly = true;
-            RentalCarPrice.Width = 150;
+            dateTimePicker2.Location = new Point(127, 249);
+            dateTimePicker2.Name = "dateTimePicker2";
+            dateTimePicker2.Size = new Size(216, 31);
+            dateTimePicker2.TabIndex = 29;
             // 
             // MainPage
             // 
@@ -766,9 +766,7 @@
         private Label label13;
         private TextBox textBox6;
         private Label label14;
-        private TextBox textBox3;
         private Label label11;
-        private TextBox textBox2;
         private Label label10;
         private Button button1;
         private DataGridView dataGridView1;
@@ -782,5 +780,7 @@
         private DataGridViewTextBoxColumn RentalCarModel;
         private DataGridViewTextBoxColumn RentalCarYear;
         private DataGridViewTextBoxColumn RentalCarPrice;
+        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dateTimePicker2;
     }
 }
