@@ -232,11 +232,21 @@ namespace CMPT291_Final_Project
                     {
                         myReader = myCommand.ExecuteReader();
 
-                        ResultsDataGrid.Rows.Clear();
-
-                        while (myReader.Read())
+                        if (myReader.HasRows)
                         {
-                            ResultsDataGrid.Rows.Add(myReader["FirstName"].ToString(), myReader["LastName"].ToString());
+                            ResultsDataGrid.Rows.Clear();
+
+
+                            while (myReader.Read())
+                            {
+                                ResultsDataGrid.Rows.Add(myReader["FirstName"].ToString(), myReader["LastName"].ToString());
+                            }
+
+                        }
+
+                        else
+                        {
+                            ResultsDataGrid.DataSource = null; // returns an empty data grid
                         }
                         myReader.Close();
                     }
@@ -263,11 +273,19 @@ namespace CMPT291_Final_Project
                     {
                         myReader = myCommand.ExecuteReader();
 
-                        ResultsDataGrid.Rows.Clear();
 
-                        while (myReader.Read())
+                        if (myReader.HasRows)
                         {
-                            ResultsDataGrid.Rows.Add(myReader["City"].ToString(), myReader["TotalRentals"].ToString());
+                            ResultsDataGrid.Rows.Clear();
+
+                            while (myReader.Read())
+                            {
+                                ResultsDataGrid.Rows.Add(myReader["City"].ToString(), myReader["TotalRentals"].ToString());
+                            }
+                        }
+                        else
+                        {
+                            ResultsDataGrid.DataSource = null;
                         }
                         myReader.Close();
                     }
@@ -298,13 +316,22 @@ namespace CMPT291_Final_Project
                     {
                         myReader = myCommand.ExecuteReader();
 
-                        ResultsDataGrid.Rows.Clear();
 
-                        while (myReader.Read())
+                        if (myReader.HasRows)
                         {
-                            ResultsDataGrid.Rows.Add(myReader["CustomerID"].ToString(), myReader["FirstName"].ToString(), myReader["LastName"].ToString());
+                            ResultsDataGrid.Rows.Clear();
+
+                            while (myReader.Read())
+                            {
+                                ResultsDataGrid.Rows.Add(myReader["CustomerID"].ToString(), myReader["FirstName"].ToString(), myReader["LastName"].ToString());
+                            }
                         }
-                        myReader.Close();
+                        else 
+                        {
+                            ResultsDataGrid.DataSource = null;
+                        }
+                            
+                            myReader.Close();
                     }
                     catch (Exception e3)
                     {
@@ -315,14 +342,13 @@ namespace CMPT291_Final_Project
                 }
                 else if (reportcombobox.SelectedItem.ToString() == "Branches that have cars with low mileage (less than 100000) and low prices (less than 100 a day)")
                 {
-                    myCommand.CommandText = "SELECT b.BranchID, b.City, b.Street, b.Postal FROM Branch b WHERE EXISTS ( SELECT * FROM Car c WHERE c.BranchID = b.BranchID AND c.Mileage < 5000 AND c.CTID IN ( SELECT CTID FROM CarType WHERE DailyPrice < 100 ))";
+                    myCommand.CommandText = "SELECT b.BranchID, b.City FROM Branch b WHERE EXISTS ( SELECT * FROM Car c WHERE c.BranchID = b.BranchID AND c.Mileage < 5000 AND c.CTID IN ( SELECT CTID FROM CarType WHERE DailyPrice < 100 ))";
 
 
-                    ResultsDataGrid.ColumnCount = 4;
+                    ResultsDataGrid.ColumnCount = 2;
                     ResultsDataGrid.Columns[0].Name = "BranchID";
                     ResultsDataGrid.Columns[1].Name = "City";
-                    ResultsDataGrid.Columns[2].Name = "Street";
-                    ResultsDataGrid.Columns[3].Name = "Postal";
+                    
 
 
                     ResultsDataGrid.ColumnHeadersVisible = true;
@@ -332,13 +358,23 @@ namespace CMPT291_Final_Project
                     {
                         myReader = myCommand.ExecuteReader();
 
-                        ResultsDataGrid.Rows.Clear();
 
-                        while (myReader.Read())
+                        if (myReader.HasRows)
                         {
-                            ResultsDataGrid.Rows.Add(myReader["BranchID"].ToString(), myReader["City"].ToString(), myReader["Street"].ToString(), myReader["Postal"].ToString());
+
+                            ResultsDataGrid.Rows.Clear();
+
+                            while (myReader.Read())
+                            {
+                                ResultsDataGrid.Rows.Add(myReader["BranchID"].ToString(), myReader["City"].ToString());
+                            }
                         }
-                        myReader.Close();
+                        else
+                        {
+                            ResultsDataGrid.DataSource = null;
+                        }
+                            
+                            myReader.Close();
                     }
                     catch (Exception e3)
                     {
@@ -366,11 +402,19 @@ namespace CMPT291_Final_Project
                     {
                         myReader = myCommand.ExecuteReader();
 
-                        ResultsDataGrid.Rows.Clear();
-
-                        while (myReader.Read())
+                        if (myReader.HasRows)
                         {
-                            ResultsDataGrid.Rows.Add(myReader["BranchID"].ToString(), myReader["Make"].ToString(), myReader["Model"].ToString(), myReader["Year"].ToString());
+
+                            ResultsDataGrid.Rows.Clear();
+
+                            while (myReader.Read())
+                            {
+                                ResultsDataGrid.Rows.Add(myReader["BranchID"].ToString(), myReader["Make"].ToString(), myReader["Model"].ToString(), myReader["Year"].ToString());
+                            }
+                        }
+                        else
+                        {
+                            ResultsDataGrid.DataSource = null;
                         }
                         myReader.Close();
                     }
