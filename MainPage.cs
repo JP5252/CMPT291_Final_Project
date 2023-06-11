@@ -16,9 +16,6 @@ namespace CMPT291_Final_Project
         public MainPage()
         {
             InitializeComponent();
-            ///////////////////////////////
-
-            //////////////////////////////////
 
             String connectionString = "Server = DESKTOP-733UFP1; Database = CMPT_291_FinalProject; Trusted_Connection = yes;";
 
@@ -386,11 +383,6 @@ namespace CMPT291_Final_Project
             {
                 MessageBox.Show("PLEASE SELECT A REPORT.", "Error");
             }
-        }
-
-        private void label12_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
