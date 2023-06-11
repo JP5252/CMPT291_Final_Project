@@ -36,6 +36,8 @@
             reportcombobox = new ComboBox();
             ReportScreenHeader = new Label();
             tabPage2 = new TabPage();
+            CheckAvailBtn = new Button();
+            dateTimePicker2 = new DateTimePicker();
             dateTimePicker1 = new DateTimePicker();
             dataGridView1 = new DataGridView();
             RentalCarID = new DataGridViewTextBoxColumn();
@@ -87,7 +89,6 @@
             LicensePlate = new DataGridViewTextBoxColumn();
             CTID = new DataGridViewTextBoxColumn();
             tabControl1 = new TabControl();
-            dateTimePicker2 = new DateTimePicker();
             tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ResultsDataGrid).BeginInit();
             tabPage2.SuspendLayout();
@@ -173,6 +174,7 @@
             // tabPage2
             // 
             tabPage2.BackColor = Color.Transparent;
+            tabPage2.Controls.Add(CheckAvailBtn);
             tabPage2.Controls.Add(dateTimePicker2);
             tabPage2.Controls.Add(dateTimePicker1);
             tabPage2.Controls.Add(dataGridView1);
@@ -195,9 +197,26 @@
             tabPage2.Text = "Rentals";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // CheckAvailBtn
+            // 
+            CheckAvailBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            CheckAvailBtn.Location = new Point(661, 235);
+            CheckAvailBtn.Name = "CheckAvailBtn";
+            CheckAvailBtn.Size = new Size(199, 61);
+            CheckAvailBtn.TabIndex = 30;
+            CheckAvailBtn.Text = "Check Availability";
+            CheckAvailBtn.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePicker2
+            // 
+            dateTimePicker2.Location = new Point(110, 246);
+            dateTimePicker2.Name = "dateTimePicker2";
+            dateTimePicker2.Size = new Size(216, 31);
+            dateTimePicker2.TabIndex = 29;
+            // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(508, 248);
+            dateTimePicker1.Location = new Point(426, 245);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(216, 31);
             dateTimePicker1.TabIndex = 28;
@@ -262,9 +281,9 @@
             // button1
             // 
             button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button1.Location = new Point(601, 293);
+            button1.Location = new Point(601, 314);
             button1.Name = "button1";
-            button1.Size = new Size(273, 115);
+            button1.Size = new Size(273, 94);
             button1.TabIndex = 26;
             button1.Text = "Create Rental";
             button1.UseVisualStyleBackColor = true;
@@ -341,7 +360,7 @@
             // 
             label11.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label11.AutoSize = true;
-            label11.Location = new Point(30, 254);
+            label11.Location = new Point(13, 251);
             label11.Name = "label11";
             label11.Size = new Size(90, 25);
             label11.TabIndex = 14;
@@ -351,7 +370,7 @@
             // 
             label10.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label10.AutoSize = true;
-            label10.Location = new Point(418, 253);
+            label10.Location = new Point(336, 250);
             label10.Name = "label10";
             label10.Size = new Size(84, 25);
             label10.TabIndex = 12;
@@ -692,13 +711,6 @@
             tabControl1.SizeMode = TabSizeMode.FillToRight;
             tabControl1.TabIndex = 0;
             // 
-            // dateTimePicker2
-            // 
-            dateTimePicker2.Location = new Point(127, 249);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(216, 31);
-            dateTimePicker2.TabIndex = 29;
-            // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -782,5 +794,6 @@
         private DataGridViewTextBoxColumn RentalCarPrice;
         private DateTimePicker dateTimePicker1;
         private DateTimePicker dateTimePicker2;
+        private Button CheckAvailBtn;
     }
 }
