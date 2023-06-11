@@ -74,7 +74,7 @@
             // 
             results.AutoSize = true;
             results.BackColor = Color.WhiteSmoke;
-            results.Location = new Point(31, 105);
+            results.Location = new Point(22, 101);
             results.MaximumSize = new Size(520, 230);
             results.MinimumSize = new Size(520, 230);
             results.Name = "results";

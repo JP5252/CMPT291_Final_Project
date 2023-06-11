@@ -30,7 +30,21 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
             tabPage3 = new TabPage();
+            ReportsLabel = new Label();
+            ResultsDataGrid = new DataGridView();
+            reportsbutton = new Button();
+            reportcombobox = new ComboBox();
+            ReportScreenHeader = new Label();
             tabPage2 = new TabPage();
+            dataGridView1 = new DataGridView();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn8 = new DataGridViewTextBoxColumn();
             button1 = new Button();
             textBox7 = new TextBox();
             label15 = new Label();
@@ -79,24 +93,22 @@
             LicensePlate = new DataGridViewTextBoxColumn();
             CTID = new DataGridViewTextBoxColumn();
             tabControl1 = new TabControl();
-            dataGridView1 = new DataGridView();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn8 = new DataGridViewTextBoxColumn();
+            tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ResultsDataGrid).BeginInit();
             tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Car).BeginInit();
             tabControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // tabPage3
             // 
+            tabPage3.Controls.Add(ReportsLabel);
+            tabPage3.Controls.Add(ResultsDataGrid);
+            tabPage3.Controls.Add(reportsbutton);
+            tabPage3.Controls.Add(reportcombobox);
+            tabPage3.Controls.Add(ReportScreenHeader);
             tabPage3.Location = new Point(4, 24);
             tabPage3.Margin = new Padding(2);
             tabPage3.Name = "tabPage3";
@@ -104,6 +116,60 @@
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Reports";
             tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // ReportsLabel
+            // 
+            ReportsLabel.AutoSize = true;
+            ReportsLabel.Font = new Font("Arial", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            ReportsLabel.Location = new Point(148, 73);
+            ReportsLabel.Name = "ReportsLabel";
+            ReportsLabel.Size = new Size(196, 18);
+            ReportsLabel.TabIndex = 6;
+            ReportsLabel.Text = "Result of Report Chosen : ";
+            ReportsLabel.Visible = false;
+            // 
+            // ResultsDataGrid
+            // 
+            ResultsDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ResultsDataGrid.Location = new Point(21, 100);
+            ResultsDataGrid.Name = "ResultsDataGrid";
+            ResultsDataGrid.RowTemplate.Height = 25;
+            ResultsDataGrid.Size = new Size(440, 150);
+            ResultsDataGrid.TabIndex = 5;
+            ResultsDataGrid.Visible = false;
+            // 
+            // reportsbutton
+            // 
+            reportsbutton.BackColor = Color.Aquamarine;
+            reportsbutton.Location = new Point(501, 39);
+            reportsbutton.Name = "reportsbutton";
+            reportsbutton.Size = new Size(85, 23);
+            reportsbutton.TabIndex = 4;
+            reportsbutton.Text = "GENERATE";
+            reportsbutton.UseVisualStyleBackColor = false;
+            reportsbutton.Click += reportsbutton_Click;
+            // 
+            // reportcombobox
+            // 
+            reportcombobox.FormattingEnabled = true;
+            reportcombobox.Items.AddRange(new object[] { "Names customers who have not rented any cars with a daily price greater than 100 in the city of Edmonton. ", "Finds the total rental branches in the City", "Customers rented in more than one branches in in different cities", "Branches that have cars with low mileage (less than 100000) and low prices (less than 100 a day)", "Highest Daily Price of Car Make and Model from each branches." });
+            reportcombobox.Location = new Point(21, 39);
+            reportcombobox.MaximumSize = new Size(400, 0);
+            reportcombobox.MinimumSize = new Size(440, 0);
+            reportcombobox.Name = "reportcombobox";
+            reportcombobox.Size = new Size(440, 23);
+            reportcombobox.TabIndex = 3;
+            // 
+            // ReportScreenHeader
+            // 
+            ReportScreenHeader.AutoSize = true;
+            ReportScreenHeader.Font = new Font("Calibri", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            ReportScreenHeader.Location = new Point(148, 0);
+            ReportScreenHeader.Name = "ReportScreenHeader";
+            ReportScreenHeader.Size = new Size(201, 36);
+            ReportScreenHeader.TabIndex = 2;
+            ReportScreenHeader.Text = "Select a report:";
+            ReportScreenHeader.Click += label12_Click;
             // 
             // tabPage2
             // 
@@ -132,6 +198,88 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Rentals";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7, dataGridViewTextBoxColumn8 });
+            dataGridView1.Location = new Point(5, 4);
+            dataGridView1.Margin = new Padding(2);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.RowTemplate.Height = 33;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.Size = new Size(612, 115);
+            dataGridView1.TabIndex = 27;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.HeaderText = "RentalID";
+            dataGridViewTextBoxColumn1.MinimumWidth = 8;
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.ReadOnly = true;
+            dataGridViewTextBoxColumn1.Width = 80;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewTextBoxColumn2.HeaderText = "DateTo";
+            dataGridViewTextBoxColumn2.MinimumWidth = 8;
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.ReadOnly = true;
+            dataGridViewTextBoxColumn2.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewTextBoxColumn3.HeaderText = "DateFrom";
+            dataGridViewTextBoxColumn3.MinimumWidth = 8;
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.ReadOnly = true;
+            dataGridViewTextBoxColumn3.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewTextBoxColumn4.HeaderText = "Price";
+            dataGridViewTextBoxColumn4.MinimumWidth = 8;
+            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            dataGridViewTextBoxColumn4.ReadOnly = true;
+            dataGridViewTextBoxColumn4.Width = 80;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            dataGridViewTextBoxColumn5.HeaderText = "CustomerID";
+            dataGridViewTextBoxColumn5.MinimumWidth = 8;
+            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            dataGridViewTextBoxColumn5.ReadOnly = true;
+            dataGridViewTextBoxColumn5.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            dataGridViewTextBoxColumn6.HeaderText = "CarID";
+            dataGridViewTextBoxColumn6.MinimumWidth = 8;
+            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            dataGridViewTextBoxColumn6.ReadOnly = true;
+            dataGridViewTextBoxColumn6.Width = 70;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            dataGridViewTextBoxColumn7.HeaderText = "BranchIDIn";
+            dataGridViewTextBoxColumn7.MinimumWidth = 8;
+            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            dataGridViewTextBoxColumn7.ReadOnly = true;
+            dataGridViewTextBoxColumn7.Width = 110;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            dataGridViewTextBoxColumn8.HeaderText = "BranchIDOut";
+            dataGridViewTextBoxColumn8.MinimumWidth = 8;
+            dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            dataGridViewTextBoxColumn8.ReadOnly = true;
+            dataGridViewTextBoxColumn8.Width = 120;
             // 
             // button1
             // 
@@ -484,12 +632,6 @@
             SearchComboBox.Name = "SearchComboBox";
             SearchComboBox.Size = new Size(196, 23);
             SearchComboBox.TabIndex = 5;
-            SearchComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            SearchComboBox.DataSource = new List<String> { 
-                "Show All", "Car ID", "Make", "Model",
-                "Year", "Mileage", "Registration",
-                "License Plate", "CTID"
-            };
             // 
             // SearchBtn
             // 
@@ -637,88 +779,6 @@
             tabControl1.SizeMode = TabSizeMode.FillToRight;
             tabControl1.TabIndex = 0;
             // 
-            // Rental
-            // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7, dataGridViewTextBoxColumn8 });
-            dataGridView1.Location = new Point(5, 4);
-            dataGridView1.Margin = new Padding(2);
-            dataGridView1.Name = "Rental";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowHeadersVisible = false;
-            dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(612, 115);
-            dataGridView1.TabIndex = 27;
-            // 
-            // RentalID
-            // 
-            dataGridViewTextBoxColumn1.HeaderText = "RentalID";
-            dataGridViewTextBoxColumn1.MinimumWidth = 8;
-            dataGridViewTextBoxColumn1.Name = "RentalID";
-            dataGridViewTextBoxColumn1.ReadOnly = true;
-            dataGridViewTextBoxColumn1.Width = 80;
-            // 
-            // DateTo
-            // 
-            dataGridViewTextBoxColumn2.HeaderText = "DateTo";
-            dataGridViewTextBoxColumn2.MinimumWidth = 8;
-            dataGridViewTextBoxColumn2.Name = "DateTo";
-            dataGridViewTextBoxColumn2.ReadOnly = true;
-            dataGridViewTextBoxColumn2.Width = 120;
-            // 
-            // DateFrom
-            // 
-            dataGridViewTextBoxColumn3.HeaderText = "DateFrom";
-            dataGridViewTextBoxColumn3.MinimumWidth = 8;
-            dataGridViewTextBoxColumn3.Name = "DateFrom";
-            dataGridViewTextBoxColumn3.ReadOnly = true;
-            dataGridViewTextBoxColumn3.Width = 120;
-            // 
-            // Price
-            // 
-            dataGridViewTextBoxColumn4.HeaderText = "Price";
-            dataGridViewTextBoxColumn4.MinimumWidth = 8;
-            dataGridViewTextBoxColumn4.Name = "Price";
-            dataGridViewTextBoxColumn4.ReadOnly = true;
-            dataGridViewTextBoxColumn4.Width = 80;
-            // 
-            // CustomerID
-            // 
-            dataGridViewTextBoxColumn5.HeaderText = "CustomerID";
-            dataGridViewTextBoxColumn5.MinimumWidth = 8;
-            dataGridViewTextBoxColumn5.Name = "CustomerID";
-            dataGridViewTextBoxColumn5.ReadOnly = true;
-            dataGridViewTextBoxColumn5.Width = 120;
-            // 
-            // CarID
-            // 
-            dataGridViewTextBoxColumn6.HeaderText = "CarID";
-            dataGridViewTextBoxColumn6.MinimumWidth = 8;
-            dataGridViewTextBoxColumn6.Name = "RentedCarID";
-            dataGridViewTextBoxColumn6.ReadOnly = true;
-            dataGridViewTextBoxColumn6.Width = 70;
-            // 
-            // BranchIDIn
-            // 
-            dataGridViewTextBoxColumn7.HeaderText = "BranchIDIn";
-            dataGridViewTextBoxColumn7.MinimumWidth = 8;
-            dataGridViewTextBoxColumn7.Name = "BranchIDIn";
-            dataGridViewTextBoxColumn7.ReadOnly = true;
-            dataGridViewTextBoxColumn7.Width = 110;
-            // 
-            // BranchIDOut
-            // 
-            dataGridViewTextBoxColumn8.HeaderText = "BranchIDOut";
-            dataGridViewTextBoxColumn8.MinimumWidth = 8;
-            dataGridViewTextBoxColumn8.Name = "BranchIDOut";
-            dataGridViewTextBoxColumn8.ReadOnly = true;
-            dataGridViewTextBoxColumn8.Width = 120;
-            // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -729,13 +789,16 @@
             Margin = new Padding(2);
             Name = "MainPage";
             Text = "Car Rentals";
+            tabPage3.ResumeLayout(false);
+            tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)ResultsDataGrid).EndInit();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)Car).EndInit();
             tabControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -800,5 +863,10 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private ComboBox reportcombobox;
+        private Label ReportScreenHeader;
+        private Button reportsbutton;
+        private DataGridView ResultsDataGrid;
+        private Label ReportsLabel;
     }
 }
