@@ -1,6 +1,8 @@
 using Azure;
+using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Linq.Expressions;
 using System.Threading.Channels;
 
 namespace CMPT291_Final_Project
@@ -14,9 +16,7 @@ namespace CMPT291_Final_Project
         public MainPage()
         {
             InitializeComponent();
-            ///////////////////////////////
 
-            //////////////////////////////////
             String connectionString = "Server = DESKTOP-JOHN; Database = CMPT_291_FinalProject; Trusted_Connection = yes;";
 
             SqlConnection myConnection = new SqlConnection(connectionString); // Timeout in seconds
@@ -203,6 +203,187 @@ namespace CMPT291_Final_Project
             catch (Exception e3)
             {
                 MessageBox.Show(e3.ToString(), "Error");
+            }
+        }
+
+        private void reportsbutton_Click(object sender, EventArgs e)
+        {
+            if (reportcombobox.SelectedItem != null)
+            {
+                ReportsLabel.Visible = true;
+                ResultsDataGrid.Visible = true;
+
+
+                if (reportcombobox.SelectedItem.ToString() == "Names customers who have not rented any cars with a daily price greater than 100 in the city of Edmonton.")
+                {
+                    myCommand.CommandText = "SELECT Customer.FirstName, Customer.LastName FROM Customer WHERE Customer.CustomerID IN (SELECT DISTINCT C1.CustomerID FROM Customer C1, Branch B1   WHERE C1.City = B1.City   AND C1.City = 'Edmonton'  AND NOT EXISTS ( SELECT R.CustomerID FROM Rental R, Car CA, CarType CT WHERE R.CarID = CA.CarID AND CA.CTID = CT.CTID AND CT.DailyPrice > 100 AND R.CustomerID = C1.CustomerID))";
+
+
+                    ResultsDataGrid.ColumnCount = 2;
+                    ResultsDataGrid.Columns[0].Name = "FirstName";
+                    ResultsDataGrid.Columns[1].Name = "LastName";
+
+                    ResultsDataGrid.ColumnHeadersVisible = true;
+
+
+
+                    try
+                    {
+                        myReader = myCommand.ExecuteReader();
+
+                        ResultsDataGrid.Rows.Clear();
+
+                        while (myReader.Read())
+                        {
+                            ResultsDataGrid.Rows.Add(myReader["FirstName"].ToString(), myReader["LastName"].ToString());
+                        }
+                        myReader.Close();
+                    }
+                    catch (Exception e3)
+                    {
+                        MessageBox.Show(e3.ToString(), "Error");
+                    }
+
+                }
+                else if (reportcombobox.SelectedItem.ToString() == "Finds the total rental branches in the City")
+                {
+                    myCommand.CommandText = "SELECT c.City, COUNT(*) AS TotalRentals FROM ( SELECT r.CustomerID, b.City FROM Rental r, Branch b   WHERE r.BranchIDIn = b.BranchID) AS c GROUP BY c.City";
+
+
+                    ResultsDataGrid.ColumnCount = 2;
+                    ResultsDataGrid.Columns[0].Name = "City";
+                    ResultsDataGrid.Columns[1].Name = "TotalRentals";
+
+
+                    ResultsDataGrid.ColumnHeadersVisible = true;
+
+
+                    try
+                    {
+                        myReader = myCommand.ExecuteReader();
+
+                        ResultsDataGrid.Rows.Clear();
+
+                        while (myReader.Read())
+                        {
+                            ResultsDataGrid.Rows.Add(myReader["City"].ToString(), myReader["TotalRentals"].ToString());
+                        }
+                        myReader.Close();
+                    }
+                    catch (Exception e3)
+                    {
+                        MessageBox.Show(e3.ToString(), "Error");
+                    }
+
+
+                }
+                else if (reportcombobox.SelectedItem.ToString() == "Customers rented in more than one branches in in different cities")
+                {
+                    myCommand.CommandText = "SELECT c.CustomerID, c.FirstName, c.LastName FROM Customer c WHERE c.CustomerID IN ( SELECT r.CustomerID FROM Rental r, Branch b  WHERE r.BranchIDIn = b.BranchID GROUP BY r.CustomerID HAVING COUNT(DISTINCT b.City) > 1)";
+
+
+                    ResultsDataGrid.ColumnCount = 3;
+                    ResultsDataGrid.Columns[0].Name = "CustomerID";
+                    ResultsDataGrid.Columns[1].Name = "FirstName";
+                    ResultsDataGrid.Columns[2].Name = "LastName";
+
+
+
+                    ResultsDataGrid.ColumnHeadersVisible = true;
+
+
+
+                    try
+                    {
+                        myReader = myCommand.ExecuteReader();
+
+                        ResultsDataGrid.Rows.Clear();
+
+                        while (myReader.Read())
+                        {
+                            ResultsDataGrid.Rows.Add(myReader["CustomerID"].ToString(), myReader["FirstName"].ToString(), myReader["LastName"].ToString());
+                        }
+                        myReader.Close();
+                    }
+                    catch (Exception e3)
+                    {
+                        MessageBox.Show(e3.ToString(), "Error");
+                    }
+
+
+                }
+                else if (reportcombobox.SelectedItem.ToString() == "Branches that have cars with low mileage (less than 100000) and low prices (less than 100 a day)")
+                {
+                    myCommand.CommandText = "SELECT b.BranchID, b.City, b.Street, b.Postal FROM Branch b WHERE EXISTS ( SELECT * FROM Car c WHERE c.BranchID = b.BranchID AND c.Mileage < 5000 AND c.CTID IN ( SELECT CTID FROM CarType WHERE DailyPrice < 100 ))";
+
+
+                    ResultsDataGrid.ColumnCount = 4;
+                    ResultsDataGrid.Columns[0].Name = "BranchID";
+                    ResultsDataGrid.Columns[1].Name = "City";
+                    ResultsDataGrid.Columns[2].Name = "Street";
+                    ResultsDataGrid.Columns[3].Name = "Postal";
+
+
+                    ResultsDataGrid.ColumnHeadersVisible = true;
+
+
+                    try
+                    {
+                        myReader = myCommand.ExecuteReader();
+
+                        ResultsDataGrid.Rows.Clear();
+
+                        while (myReader.Read())
+                        {
+                            ResultsDataGrid.Rows.Add(myReader["BranchID"].ToString(), myReader["City"].ToString(), myReader["Street"].ToString(), myReader["Postal"].ToString());
+                        }
+                        myReader.Close();
+                    }
+                    catch (Exception e3)
+                    {
+                        MessageBox.Show(e3.ToString(), "Error");
+                    }
+
+
+                }
+                else if (reportcombobox.SelectedItem.ToString() == "Highest Daily Price of Car Make and Model from each branches")
+                {
+                    myCommand.CommandText = "SELECT C.BranchID, C.Make, C.Model, C.Year FROM Car C WHERE C.CTID IN (SELECT CTID FROM CarType CT WHERE CT.DailyPrice IN (SELECT MAX(DailyPrice) FROM CarType CT2 WHERE CT2.CTID = C.CTID))"
+    ;
+
+
+                    ResultsDataGrid.ColumnCount = 4;
+                    ResultsDataGrid.Columns[0].Name = "BranchID";
+                    ResultsDataGrid.Columns[1].Name = "Make";
+                    ResultsDataGrid.Columns[2].Name = "Model";
+                    ResultsDataGrid.Columns[3].Name = "Year";
+
+                    ResultsDataGrid.ColumnHeadersVisible = true;
+
+
+                    try
+                    {
+                        myReader = myCommand.ExecuteReader();
+
+                        ResultsDataGrid.Rows.Clear();
+
+                        while (myReader.Read())
+                        {
+                            ResultsDataGrid.Rows.Add(myReader["BranchID"].ToString(), myReader["Make"].ToString(), myReader["Model"].ToString(), myReader["Year"].ToString());
+                        }
+                        myReader.Close();
+                    }
+                    catch (Exception e3)
+                    {
+                        MessageBox.Show(e3.ToString(), "Error");
+                    }
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("PLEASE SELECT A REPORT.", "Error");
             }
         }
     }
