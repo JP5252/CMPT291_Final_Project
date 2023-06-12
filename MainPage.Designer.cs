@@ -36,6 +36,8 @@
             reportcombobox = new ComboBox();
             ReportScreenHeader = new Label();
             tabPage2 = new TabPage();
+            EndBranchComboBox = new ComboBox();
+            StartBranchComboBox = new ComboBox();
             CheckAvailBtn = new Button();
             dateTimePicker2 = new DateTimePicker();
             dateTimePicker1 = new DateTimePicker();
@@ -45,10 +47,8 @@
             RentalCarModel = new DataGridViewTextBoxColumn();
             RentalCarYear = new DataGridViewTextBoxColumn();
             RentalCarPrice = new DataGridViewTextBoxColumn();
-            button1 = new Button();
-            textBox7 = new TextBox();
+            CreateRentalButton = new Button();
             label15 = new Label();
-            textBox8 = new TextBox();
             label16 = new Label();
             textBox6 = new TextBox();
             label14 = new Label();
@@ -172,14 +172,14 @@
             // tabPage2
             // 
             tabPage2.BackColor = Color.Transparent;
+            tabPage2.Controls.Add(EndBranchComboBox);
+            tabPage2.Controls.Add(StartBranchComboBox);
             tabPage2.Controls.Add(CheckAvailBtn);
             tabPage2.Controls.Add(dateTimePicker2);
             tabPage2.Controls.Add(dateTimePicker1);
             tabPage2.Controls.Add(dataGridView1);
-            tabPage2.Controls.Add(button1);
-            tabPage2.Controls.Add(textBox7);
+            tabPage2.Controls.Add(CreateRentalButton);
             tabPage2.Controls.Add(label15);
-            tabPage2.Controls.Add(textBox8);
             tabPage2.Controls.Add(label16);
             tabPage2.Controls.Add(textBox6);
             tabPage2.Controls.Add(label14);
@@ -187,11 +187,27 @@
             tabPage2.Controls.Add(label10);
             tabPage2.Location = new Point(4, 34);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3, 3, 3, 3);
+            tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(891, 430);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Rentals";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // EndBranchComboBox
+            // 
+            EndBranchComboBox.FormattingEnabled = true;
+            EndBranchComboBox.Location = new Point(144, 352);
+            EndBranchComboBox.Name = "EndBranchComboBox";
+            EndBranchComboBox.Size = new Size(182, 33);
+            EndBranchComboBox.TabIndex = 32;
+            // 
+            // StartBranchComboBox
+            // 
+            StartBranchComboBox.FormattingEnabled = true;
+            StartBranchComboBox.Location = new Point(144, 299);
+            StartBranchComboBox.Name = "StartBranchComboBox";
+            StartBranchComboBox.Size = new Size(182, 33);
+            StartBranchComboBox.TabIndex = 31;
             // 
             // CheckAvailBtn
             // 
@@ -277,53 +293,40 @@
             RentalCarPrice.ReadOnly = true;
             RentalCarPrice.Width = 150;
             // 
-            // button1
+            // CreateRentalButton
             // 
-            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button1.Location = new Point(601, 313);
-            button1.Name = "button1";
-            button1.Size = new Size(273, 93);
-            button1.TabIndex = 26;
-            button1.Text = "Create Rental";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // textBox7
-            // 
-            textBox7.Location = new Point(416, 370);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(150, 31);
-            textBox7.TabIndex = 25;
+            CreateRentalButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            CreateRentalButton.Location = new Point(601, 313);
+            CreateRentalButton.Name = "CreateRentalButton";
+            CreateRentalButton.Size = new Size(273, 93);
+            CreateRentalButton.TabIndex = 26;
+            CreateRentalButton.Text = "Create Rental";
+            CreateRentalButton.UseVisualStyleBackColor = true;
+            CreateRentalButton.Click += CreateRentalButton_Click;
             // 
             // label15
             // 
             label15.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label15.AutoSize = true;
-            label15.Location = new Point(303, 373);
+            label15.Location = new Point(4, 355);
             label15.Name = "label15";
-            label15.Size = new Size(113, 25);
+            label15.Size = new Size(134, 25);
             label15.TabIndex = 24;
-            label15.Text = "BranchIDOut";
-            // 
-            // textBox8
-            // 
-            textBox8.Location = new Point(127, 370);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(150, 31);
-            textBox8.TabIndex = 23;
+            label15.Text = "Dropoff Branch";
             // 
             // label16
             // 
             label16.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label16.AutoSize = true;
-            label16.Location = new Point(29, 373);
+            label16.Location = new Point(22, 302);
             label16.Name = "label16";
-            label16.Size = new Size(98, 25);
+            label16.Size = new Size(106, 25);
             label16.TabIndex = 22;
-            label16.Text = "BranchIDIn";
+            label16.Text = "Start Branch";
             // 
             // textBox6
             // 
-            textBox6.Location = new Point(303, 313);
+            textBox6.Location = new Point(445, 324);
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(150, 31);
             textBox6.TabIndex = 17;
@@ -332,7 +335,7 @@
             // 
             label14.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label14.AutoSize = true;
-            label14.Location = new Point(197, 318);
+            label14.Location = new Point(332, 327);
             label14.Name = "label14";
             label14.Size = new Size(107, 25);
             label14.TabIndex = 16;
@@ -385,7 +388,7 @@
             tabPage1.Controls.Add(Car);
             tabPage1.Location = new Point(4, 34);
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3, 3, 3, 3);
+            tabPage1.Padding = new Padding(3);
             tabPage1.Size = new Size(891, 430);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Cars";
@@ -546,12 +549,6 @@
             SearchComboBox.Name = "SearchComboBox";
             SearchComboBox.Size = new Size(278, 33);
             SearchComboBox.TabIndex = 5;
-            SearchComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            SearchComboBox.DataSource = new List<String> {
-                "Show All", "Car ID", "Make", "Model",
-                "Year", "Mileage", "Registration",
-                "License Plate", "CTID"
-            };
             // 
             // SearchBtn
             // 
@@ -752,15 +749,13 @@
         private DataGridViewTextBoxColumn Registration;
         private DataGridViewTextBoxColumn LicensePlate;
         private DataGridViewTextBoxColumn CTID;
-        private TextBox textBox7;
         private Label label15;
-        private TextBox textBox8;
         private Label label16;
         private TextBox textBox6;
         private Label label14;
         private Label label11;
         private Label label10;
-        private Button button1;
+        private Button CreateRentalButton;
         private DataGridView dataGridView1;
         private ComboBox reportcombobox;
         private Label ReportScreenHeader;
@@ -775,5 +770,7 @@
         private DateTimePicker dateTimePicker1;
         private DateTimePicker dateTimePicker2;
         private Button CheckAvailBtn;
+        private ComboBox EndBranchComboBox;
+        private ComboBox StartBranchComboBox;
     }
 }

@@ -28,12 +28,48 @@ namespace CMPT291_Final_Project
                 myCommand = new SqlCommand();
                 myCommand.Connection = myConnection; // Link the command stream to the connection
 
+                //Making a datatable to store start branch
+                myCommand.CommandText = "SELECT City, BranchID FROM dbo.Branch";
+                myReader = myCommand.ExecuteReader();
+
+                DataTable dataTable1 = new DataTable();
+                dataTable1.Load(myReader);
+
+                myReader.Close();
+
+                //Making a datatable to store end branch
+                myCommand.CommandText = "SELECT City, BranchID FROM dbo.Branch";
+                myReader = myCommand.ExecuteReader();
+
+                DataTable dataTable2 = new DataTable();
+                dataTable2.Load(myReader);
+
+                myReader.Close();
+
+                //Bind Rental Start location combobox
+                StartBranchComboBox.DisplayMember = "City";
+                StartBranchComboBox.ValueMember = "BranchID";
+                StartBranchComboBox.DataSource = dataTable1;
+
+                //Bind Rental End location combobox
+                EndBranchComboBox.DisplayMember = "City";
+                EndBranchComboBox.ValueMember = "BranchID";
+                EndBranchComboBox.DataSource = dataTable2;
+
+
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString(), "Error");
                 this.Close();
             }
+
+            SearchComboBox.DataSource = new List<String> {
+                "Show All", "Car ID", "Make", "Model",
+                "Year", "Mileage", "Registration",
+                "License Plate", "CTID"
+            };
+
         }
 
         private void AddBtn_Click(object sender, EventArgs e)
@@ -471,6 +507,15 @@ namespace CMPT291_Final_Project
 
                 myReader.Close();
             }
+        }
+
+        private void CreateRentalButton_Click(object sender, EventArgs e)
+        {
+            string StartCity = StartBranchComboBox.Text;
+            string EndCity = EndBranchComboBox.Text;
+            MessageBox.Show("Starting Branch: " + StartCity + "BranchID: " + StartBranchComboBox.SelectedValue +
+                            "\nEnd Branch: " + EndCity + "BranchID: " + StartBranchComboBox.SelectedValue ,
+                            "Rental confirmation");
         }
     }
 }
