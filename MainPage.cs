@@ -386,5 +386,91 @@ namespace CMPT291_Final_Project
                 MessageBox.Show("PLEASE SELECT A REPORT.", "Error");
             }
         }
+
+        private void CheckAvailBtn_Click(object sender, EventArgs e)
+        {
+            // Rental data grid
+            DataGridView rental = dataGridView1;
+
+            DateTimePicker startDate = dateTimePicker2;
+            DateTimePicker endDate = dateTimePicker1;
+
+            String startDateString = startDate.Value.ToString("yyyy-MM-dd");
+            String endDateString = endDate.Value.ToString("yyyy-MM-dd");
+
+            // Renting # of days
+            int daysRented = (endDate.Value - startDate.Value).Days;
+
+            // Error check end date >= start date
+            if (DateTime.Compare(startDate.Value, endDate.Value) >= 0)
+            {
+                MessageBox.Show(
+                    $"Ensure that \"Start Date\" is EARLIER than \"End Date\"\n\n" +
+                    $"Current Start date is: {startDate.Value.ToString("MMMM dd, yyyy")}\n" +
+                    $"Current End date is: {endDate.Value.ToString("MMMM dd, yyyy")}",
+                    "Error"
+                    );
+                return;
+            }
+
+            // Select car IDs that are available
+            myCommand.CommandText = (
+                $"SELECT CarID, Make, Model, Year, CTID FROM dbo.Car WHERE CarID IN (\n" +
+                $"SELECT CarID FROM dbo.CAR WHERE CarID NOT IN (\n" +
+                $"SELECT CarID FROM dbo.Rental\n" +
+                $")\n" +
+                $"UNION\n" +
+                $"SELECT CarID FROM dbo.Rental WHERE CarID NOT IN (\n" +
+                $"SELECT CarID FROM dbo.Rental WHERE\n" +
+                $"(DateFrom > '{startDateString}' AND DateTo < '{endDateString}') OR\n" +
+                $"(DateTo > '{startDateString}' AND DateFrom < '{endDateString}')\n" +
+                $")\n" +
+                $")"
+            );
+            myReader = myCommand.ExecuteReader();
+
+            rental.Rows.Clear();
+            while (myReader.Read())
+            {
+                rental.Rows.Add(
+                    myReader["CarID"].ToString(),
+                    myReader["Make"].ToString(),
+                    myReader["Model"].ToString(),
+                    myReader["Year"].ToString()
+                );
+            }
+            myReader.Close();
+
+            foreach (DataGridViewRow row in rental.Rows)
+            {
+                myCommand.CommandText = (
+                    $"SELECT DailyPrice, WeeklyPrice, MonthlyPrice FROM (\n" +
+                    $"SELECT CarID, CTID FROM dbo.Car WHERE CarID = {row.Cells[0].Value})\n" +
+                    $"AS T1, dbo.CarType WHERE T1.CTID = CarType.CTID"
+                );
+                myReader = myCommand.ExecuteReader();
+                myReader.Read();
+
+                int dailyPrice = int.Parse(myReader["DailyPrice"].ToString()!);
+                int weeklyPrice = int.Parse(myReader["WeeklyPrice"].ToString()!);
+                int monthlyPrice = int.Parse(myReader["MonthlyPrice"].ToString()!);
+
+                int dayCalculation = daysRented;
+
+                int numWeeks = (int) Math.Floor(dayCalculation / 7.0);
+                dayCalculation -= numWeeks * 7;
+
+                int numMonths = (int) Math.Floor(numWeeks / 4.0);
+                numWeeks -= numMonths * 4;
+
+                int totalPrice = (dayCalculation * dailyPrice) +
+                                 (numWeeks * weeklyPrice) +
+                                 (numMonths * monthlyPrice);
+
+                row.Cells[4].Value = totalPrice;
+
+                myReader.Close();
+            }
+        }
     }
 }
