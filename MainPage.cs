@@ -514,7 +514,7 @@ namespace CMPT291_Final_Project
             string StartCity = StartBranchComboBox.Text;
             string EndCity = EndBranchComboBox.Text;
             MessageBox.Show("Starting Branch: " + StartCity + "BranchID: " + StartBranchComboBox.SelectedValue +
-                            "\nEnd Branch: " + EndCity + "BranchID: " + StartBranchComboBox.SelectedValue ,
+                            "\nEnd Branch: " + EndCity + "BranchID: " + EndBranchComboBox.SelectedValue ,
                             "Rental confirmation");
         }
     }
