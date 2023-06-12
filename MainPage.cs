@@ -17,7 +17,7 @@ namespace CMPT291_Final_Project
         {
             InitializeComponent();
 
-            String connectionString = "Server = DESKTOP-JOHN; Database = CMPT_291_FinalProject; Trusted_Connection = yes;";
+            String connectionString = "Server = DESKTOP-733UFP1; Database = CMPT_291_FinalProject; Trusted_Connection = yes;";
 
             SqlConnection myConnection = new SqlConnection(connectionString); // Timeout in seconds
 
@@ -457,10 +457,10 @@ namespace CMPT291_Final_Project
 
                 int dayCalculation = daysRented;
 
-                int numWeeks = (int) Math.Floor(dayCalculation / 7.0);
+                int numWeeks = (int)Math.Floor(dayCalculation / 7.0);
                 dayCalculation -= numWeeks * 7;
 
-                int numMonths = (int) Math.Floor(numWeeks / 4.0);
+                int numMonths = (int)Math.Floor(numWeeks / 4.0);
                 numWeeks -= numMonths * 4;
 
                 int totalPrice = (dayCalculation * dailyPrice) +
