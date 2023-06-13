@@ -12,6 +12,7 @@ namespace CMPT291_Final_Project
         public SqlConnection myConnection;
         public SqlCommand myCommand;
         public SqlDataReader myReader;
+        public int rentalID = 3015;
 
         public MainPage()
         {
@@ -55,8 +56,6 @@ namespace CMPT291_Final_Project
                 EndBranchComboBox.DisplayMember = "City";
                 EndBranchComboBox.ValueMember = "BranchID";
                 EndBranchComboBox.DataSource = dataTable2;
-
-
             }
             catch (Exception e)
             {
@@ -561,6 +560,22 @@ namespace CMPT291_Final_Project
             MessageBox.Show("Starting Branch: " + StartCity + "BranchID: " + StartBranchComboBox.SelectedValue +
                             "\nEnd Branch: " + EndCity + "BranchID: " + EndBranchComboBox.SelectedValue,
                             "Rental confirmation");
+
+            try
+            {
+                myCommand.CommandText = "insert into Rental values (" + rentalID + ",'" + dateTimePicker2.Value + "','" + dateTimePicker1.Value + "'," + dataGridView1.SelectedCells[4].Value +
+                                         "," + customerIDBox.Text + ",'" + dataGridView1.SelectedCells[0].Value + "','" + StartBranchComboBox.SelectedValue + "','" + EndBranchComboBox.SelectedValue + "')";
+                MessageBox.Show(myCommand.CommandText);
+
+                myCommand.ExecuteNonQuery();
+                myCommand.Dispose();
+            }
+            catch (Exception e2)
+            {
+                MessageBox.Show(e2.ToString(), "Error");
+            }
+
+            rentalID++;
         }
     }
 }
