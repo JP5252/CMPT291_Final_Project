@@ -422,7 +422,6 @@ namespace CMPT291_Final_Project
                 }
                 else if (reportcombobox.SelectedItem.ToString() == "Highest Daily Price of Car Make and Model from each branches")
                 {
-                    //myCommand.CommandText = "SELECT DISTINCT R.BranchIDIn, MAX(CT.DailyPrice), C.Make, C.Model, C.Year FROM Car C, Rental R, CarType CT WHERE R.CarID = C.CarID and C.CTID = CT.CTID and C.CTID IN (SELECT DISTINCT CTID FROM CarType CT1 WHERE CT1.DailyPrice IN (SELECT MAX(DailyPrice) FROM CarType CT2 WHERE CT2.CTID = C.CTID)) GROUP BY R.BranchIDIn, C.Make, C.Model, C.Year";
                     myCommand.CommandText = "SELECT R.BranchIDIn, CT.DailyPrice, C.Make, C.Model, C.Year FROM Rental R, Car C, CarType CT WHERE R.CarID = C.CarID and C.CTID = CT.CTID and CT.DailyPrice = (SELECT MAX(CT2.DailyPrice) FROM CarType CT2, Car C2, Rental R2 WHERE CT2.CTID = C2.CTID and C2.CarID = R2.CarID and R2.BranchIDIn = R.BranchIDIn) GROUP BY R.BranchIDIn, CT.DailyPrice, C.Make, C.Model, C.Year";
 
                     ResultsDataGrid.ColumnCount = 5;
