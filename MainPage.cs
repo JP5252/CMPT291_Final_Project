@@ -17,7 +17,7 @@ namespace CMPT291_Final_Project
         {
             InitializeComponent();
 
-            String connectionString = "Server = DESKTOP-733UFP1; Database = CMPT_291_FinalProject; Trusted_Connection = yes;";
+            String connectionString = "Server = Localhost; Database = CMPT_291_FinalProject; Trusted_Connection = yes;";
 
             SqlConnection myConnection = new SqlConnection(connectionString); // Timeout in seconds
 
