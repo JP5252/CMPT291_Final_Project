@@ -250,10 +250,9 @@ namespace CMPT291_Final_Project
                 ResultsDataGrid.Visible = true;
 
 
-                if (reportcombobox.SelectedItem.ToString() == "Names customers who have not rented any cars with a daily price greater than 100 in the city of Edmonton.")
+                if (reportcombobox.SelectedItem.ToString() == "Names of customers who have not rented any cars with a daily price greater than 100 in the city of Edmonton.")
                 {
-                    myCommand.CommandText = "SELECT Customer.FirstName, Customer.LastName FROM Customer WHERE Customer.CustomerID IN (SELECT DISTINCT C1.CustomerID FROM Customer C1, Branch B1   WHERE C1.City = B1.City   AND C1.City = 'Edmonton'  AND NOT EXISTS ( SELECT R.CustomerID FROM Rental R, Car CA, CarType CT WHERE R.CarID = CA.CarID AND CA.CTID = CT.CTID AND CT.DailyPrice > 100 AND R.CustomerID = C1.CustomerID))";
-
+                    myCommand.CommandText = "Select C.CustomerID, C.LastName FROM Customer C WHERE C.CustomerID NOT IN (SELECT R.CustomerID FROM Rental R, Car CA, CarType CT, Branch B WHERE R.CarID = CA.CarID and CA.CTID = CT.CTID and R.BranchIDOut = B.BranchID and B.City = 'Edmonton' and CT.DailyPrice > 100)";
 
                     ResultsDataGrid.ColumnCount = 2;
                     ResultsDataGrid.Columns[0].Name = "FirstName";
@@ -267,11 +266,21 @@ namespace CMPT291_Final_Project
                     {
                         myReader = myCommand.ExecuteReader();
 
-                        ResultsDataGrid.Rows.Clear();
-
-                        while (myReader.Read())
+                        if (myReader.HasRows)
                         {
-                            ResultsDataGrid.Rows.Add(myReader["FirstName"].ToString(), myReader["LastName"].ToString());
+                            ResultsDataGrid.Rows.Clear();
+
+
+                            while (myReader.Read())
+                            {
+                                ResultsDataGrid.Rows.Add(myReader["CustomerID"].ToString(), myReader["LastName"].ToString());
+                            }
+
+                        }
+
+                        else
+                        {
+                            ResultsDataGrid.DataSource = null; // returns an empty data grid
                         }
                         myReader.Close();
                     }
@@ -281,7 +290,7 @@ namespace CMPT291_Final_Project
                     }
 
                 }
-                else if (reportcombobox.SelectedItem.ToString() == "Finds the total rental branches in the City")
+                else if (reportcombobox.SelectedItem.ToString() == "Finds the total rentals from branches in each City")
                 {
                     myCommand.CommandText = "SELECT c.City, COUNT(*) AS TotalRentals FROM ( SELECT r.CustomerID, b.City FROM Rental r, Branch b   WHERE r.BranchIDIn = b.BranchID) AS c GROUP BY c.City";
 
@@ -298,11 +307,19 @@ namespace CMPT291_Final_Project
                     {
                         myReader = myCommand.ExecuteReader();
 
-                        ResultsDataGrid.Rows.Clear();
 
-                        while (myReader.Read())
+                        if (myReader.HasRows)
                         {
-                            ResultsDataGrid.Rows.Add(myReader["City"].ToString(), myReader["TotalRentals"].ToString());
+                            ResultsDataGrid.Rows.Clear();
+
+                            while (myReader.Read())
+                            {
+                                ResultsDataGrid.Rows.Add(myReader["City"].ToString(), myReader["TotalRentals"].ToString());
+                            }
+                        }
+                        else
+                        {
+                            ResultsDataGrid.DataSource = null;
                         }
                         myReader.Close();
                     }
@@ -333,12 +350,21 @@ namespace CMPT291_Final_Project
                     {
                         myReader = myCommand.ExecuteReader();
 
-                        ResultsDataGrid.Rows.Clear();
 
-                        while (myReader.Read())
+                        if (myReader.HasRows)
                         {
-                            ResultsDataGrid.Rows.Add(myReader["CustomerID"].ToString(), myReader["FirstName"].ToString(), myReader["LastName"].ToString());
+                            ResultsDataGrid.Rows.Clear();
+
+                            while (myReader.Read())
+                            {
+                                ResultsDataGrid.Rows.Add(myReader["CustomerID"].ToString(), myReader["FirstName"].ToString(), myReader["LastName"].ToString());
+                            }
                         }
+                        else
+                        {
+                            ResultsDataGrid.DataSource = null;
+                        }
+
                         myReader.Close();
                     }
                     catch (Exception e3)
@@ -348,9 +374,9 @@ namespace CMPT291_Final_Project
 
 
                 }
-                else if (reportcombobox.SelectedItem.ToString() == "Branches that have cars with low mileage (less than 100000) and low prices (less than 100 a day)")
+                else if (reportcombobox.SelectedItem.ToString() == "Branches that have atleast 3 different customers renting from them")
                 {
-                    myCommand.CommandText = "SELECT b.BranchID, b.City, b.Street, b.Postal FROM Branch b WHERE EXISTS ( SELECT * FROM Car c WHERE c.BranchID = b.BranchID AND c.Mileage < 5000 AND c.CTID IN ( SELECT CTID FROM CarType WHERE DailyPrice < 100 ))";
+                    myCommand.CommandText = "SELECT b.BranchID, b.City, b.StreetName, b.PostalCode FROM Branch b WHERE b.BranchID IN (SELECT r.BranchIDOut FROM Rental r GROUP BY r.BranchIDOut HAVING COUNT(DISTINCT r.CustomerID) >= 3)";
 
 
                     ResultsDataGrid.ColumnCount = 4;
@@ -360,6 +386,8 @@ namespace CMPT291_Final_Project
                     ResultsDataGrid.Columns[3].Name = "Postal";
 
 
+
+
                     ResultsDataGrid.ColumnHeadersVisible = true;
 
 
@@ -367,12 +395,22 @@ namespace CMPT291_Final_Project
                     {
                         myReader = myCommand.ExecuteReader();
 
-                        ResultsDataGrid.Rows.Clear();
 
-                        while (myReader.Read())
+                        if (myReader.HasRows)
                         {
-                            ResultsDataGrid.Rows.Add(myReader["BranchID"].ToString(), myReader["City"].ToString(), myReader["Street"].ToString(), myReader["Postal"].ToString());
+
+                            ResultsDataGrid.Rows.Clear();
+
+                            while (myReader.Read())
+                            {
+                                ResultsDataGrid.Rows.Add(myReader["BranchID"].ToString(), myReader["City"].ToString(), myReader["StreetName"].ToString(), myReader["PostalCode"].ToString());
+                            }
                         }
+                        else
+                        {
+                            ResultsDataGrid.DataSource = null;
+                        }
+
                         myReader.Close();
                     }
                     catch (Exception e3)
@@ -384,8 +422,8 @@ namespace CMPT291_Final_Project
                 }
                 else if (reportcombobox.SelectedItem.ToString() == "Highest Daily Price of Car Make and Model from each branches")
                 {
-                    myCommand.CommandText = "SELECT C.BranchID, C.Make, C.Model, C.Year FROM Car C WHERE C.CTID IN (SELECT CTID FROM CarType CT WHERE CT.DailyPrice IN (SELECT MAX(DailyPrice) FROM CarType CT2 WHERE CT2.CTID = C.CTID))"
-    ;
+                    myCommand.CommandText = "SELECT DISTINCT R.BranchIDIn, C.Make, C.Model, C.Year FROM Car C, Rental R WHERE R.CarID = C.CarID and C.CTID IN (SELECT DISTINCT CTID FROM CarType CT WHERE CT.DailyPrice IN (SELECT MAX(DailyPrice) FROM CarType CT2 WHERE CT2.CTID = C.CTID)) GROUP BY R.BranchIDIn";
+                    ;
 
 
                     ResultsDataGrid.ColumnCount = 4;
@@ -401,11 +439,19 @@ namespace CMPT291_Final_Project
                     {
                         myReader = myCommand.ExecuteReader();
 
-                        ResultsDataGrid.Rows.Clear();
-
-                        while (myReader.Read())
+                        if (myReader.HasRows)
                         {
-                            ResultsDataGrid.Rows.Add(myReader["BranchID"].ToString(), myReader["Make"].ToString(), myReader["Model"].ToString(), myReader["Year"].ToString());
+
+                            ResultsDataGrid.Rows.Clear();
+
+                            while (myReader.Read())
+                            {
+                                ResultsDataGrid.Rows.Add(myReader["BranchIDIn"].ToString(), myReader["Make"].ToString(), myReader["Model"].ToString(), myReader["Year"].ToString());
+                            }
+                        }
+                        else
+                        {
+                            ResultsDataGrid.DataSource = null;
                         }
                         myReader.Close();
                     }
