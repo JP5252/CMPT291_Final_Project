@@ -130,7 +130,7 @@
             ResultsDataGrid.Name = "ResultsDataGrid";
             ResultsDataGrid.RowHeadersWidth = 62;
             ResultsDataGrid.RowTemplate.Height = 25;
-            ResultsDataGrid.Size = new Size(629, 250);
+            ResultsDataGrid.Size = new Size(807, 250);
             ResultsDataGrid.TabIndex = 5;
             ResultsDataGrid.Visible = false;
             // 
