@@ -555,20 +555,44 @@ namespace CMPT291_Final_Project
 
         private void CreateRentalButton_Click(object sender, EventArgs e)
         {
-            string StartCity = StartBranchComboBox.Text;
-            string EndCity = EndBranchComboBox.Text;
-            MessageBox.Show("Starting Branch: " + StartCity + "BranchID: " + StartBranchComboBox.SelectedValue +
-                            "\nEnd Branch: " + EndCity + "BranchID: " + EndBranchComboBox.SelectedValue,
-                            "Rental confirmation");
+
+            //if user tries to create a rental with the start date before end date
+            if (DateTime.Compare(dateTimePicker2.Value, dateTimePicker1.Value) >= 0)
+            {
+                MessageBox.Show(
+                    $"Ensure that \"Start Date\" is EARLIER than \"End Date\"\n\n" +
+                    $"Current Start date is: {dateTimePicker2.Value.ToString("MMMM dd, yyyy")}\n" +
+                    $"Current End date is: {dateTimePicker1.Value.ToString("MMMM dd, yyyy")}",
+                    "Error"
+                    );
+                return;
+            }
+
 
             try
             {
-                myCommand.CommandText = "insert into Rental values (" + rentalID + ",'" + dateTimePicker2.Value + "','" + dateTimePicker1.Value + "'," + dataGridView1.SelectedCells[4].Value +
-                                         "," + customerIDBox.Text + ",'" + dataGridView1.SelectedCells[0].Value + "','" + StartBranchComboBox.SelectedValue + "','" + EndBranchComboBox.SelectedValue + "')";
-                MessageBox.Show(myCommand.CommandText);
 
-                myCommand.ExecuteNonQuery();
+                myCommand.CommandText = ("SELECT Count(*) FROM Customer WHERE CustomerId = '" + customerIDBox.Text + "';");
+
+                int count = (int)myCommand.ExecuteScalar();
                 myCommand.Dispose();
+
+                //if the customerId exists create a rental, else report no customerID found
+                if (count > 0)
+                {
+                    myCommand.CommandText = "insert into Rental values (" + rentalID + ",'" + dateTimePicker2.Value + "','" + dateTimePicker1.Value + "'," + dataGridView1.SelectedCells[4].Value +
+                                         "," + customerIDBox.Text + ",'" + dataGridView1.SelectedCells[0].Value + "','" + StartBranchComboBox.SelectedValue + "','" + EndBranchComboBox.SelectedValue + "')";
+                    MessageBox.Show(myCommand.CommandText, "Rental Confirmation");
+
+                    myCommand.ExecuteNonQuery();
+                    myCommand.Dispose();
+                }
+
+                else
+                {
+                    MessageBox.Show("CustomerID not found", "CustomerID not found");
+                }
+                
             }
             catch (Exception e2)
             {
