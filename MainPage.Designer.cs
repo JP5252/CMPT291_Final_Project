@@ -152,7 +152,7 @@
             // reportcombobox
             // 
             reportcombobox.FormattingEnabled = true;
-            reportcombobox.Items.AddRange(new object[] { "Names customers who have not rented any cars with a daily price greater than 100 in the city of Edmonton. ", "Finds the total rental branches in the City", "Customers rented in more than one branches in in different cities", "Branches that have cars with low mileage (less than 100000) and low prices (less than 100 a day)", "Highest Daily Price of Car Make and Model from each branches." });
+            reportcombobox.Items.AddRange(new object[] { "Names customers who have not rented any cars with a daily price greater than 100 in the city of Edmonton. ", "Finds the total rental branches in the City", "Customers rented in more than one branches in in different cities", "Branches that have atleast 10 different customers renting from them", "Highest Daily Price of Car Make and Model from each branches" });
             reportcombobox.Location = new Point(21, 39);
             reportcombobox.MaximumSize = new Size(400, 0);
             reportcombobox.MinimumSize = new Size(440, 0);

@@ -4,6 +4,8 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Threading.Channels;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TreeView;
 
 namespace CMPT291_Final_Project
 {
@@ -326,12 +328,12 @@ namespace CMPT291_Final_Project
                                 ResultsDataGrid.Rows.Add(myReader["CustomerID"].ToString(), myReader["FirstName"].ToString(), myReader["LastName"].ToString());
                             }
                         }
-                        else 
+                        else
                         {
                             ResultsDataGrid.DataSource = null;
                         }
-                            
-                            myReader.Close();
+
+                        myReader.Close();
                     }
                     catch (Exception e3)
                     {
@@ -340,15 +342,18 @@ namespace CMPT291_Final_Project
 
 
                 }
-                else if (reportcombobox.SelectedItem.ToString() == "Branches that have cars with low mileage (less than 100000) and low prices (less than 100 a day)")
+                else if (reportcombobox.SelectedItem.ToString() == "Branches that have atleast 10 different customers renting from them")
                 {
-                    myCommand.CommandText = "SELECT b.BranchID, b.City FROM Branch b WHERE EXISTS ( SELECT * FROM Car c WHERE c.BranchID = b.BranchID AND c.Mileage < 5000 AND c.CTID IN ( SELECT CTID FROM CarType WHERE DailyPrice < 100 ))";
+                    myCommand.CommandText = "SELECT b.BranchID, b.City, b.Street, b.Postal FROM Branch b WHERE b.BranchID IN (SELECT r.BranchID FROM Rental r GROUP BY r.BranchID HAVING COUNT(DISTINCT r.CustomerID) >= 10)";
 
 
-                    ResultsDataGrid.ColumnCount = 2;
+                    ResultsDataGrid.ColumnCount = 4;
                     ResultsDataGrid.Columns[0].Name = "BranchID";
                     ResultsDataGrid.Columns[1].Name = "City";
-                    
+                    ResultsDataGrid.Columns[2].Name = "Street";
+                    ResultsDataGrid.Columns[3].Name = "Postal";
+
+
 
 
                     ResultsDataGrid.ColumnHeadersVisible = true;
@@ -366,15 +371,15 @@ namespace CMPT291_Final_Project
 
                             while (myReader.Read())
                             {
-                                ResultsDataGrid.Rows.Add(myReader["BranchID"].ToString(), myReader["City"].ToString());
+                                ResultsDataGrid.Rows.Add(myReader["BranchID"].ToString(), myReader["City"].ToString(), myReader["Street"].ToString(), myReader["Postal"].ToString());
                             }
                         }
                         else
                         {
                             ResultsDataGrid.DataSource = null;
                         }
-                            
-                            myReader.Close();
+
+                        myReader.Close();
                     }
                     catch (Exception e3)
                     {
@@ -385,7 +390,7 @@ namespace CMPT291_Final_Project
                 }
                 else if (reportcombobox.SelectedItem.ToString() == "Highest Daily Price of Car Make and Model from each branches")
                 {
-                    myCommand.CommandText = "SELECT C.BranchID, C.Make, C.Model, C.Year FROM Car C WHERE C.CTID IN (SELECT CTID FROM CarType CT WHERE CT.DailyPrice IN (SELECT MAX(DailyPrice) FROM CarType CT2 WHERE CT2.CTID = C.CTID))"
+                    myCommand.CommandText = "SELECT C.BranchID, C.Make, C.Model, C.Year FROM Car C WHERE C.CTID IN (SELECT CTID FROM CarType CT WHERE CT.DailyPrice IN (SELECT MAX(DailyPrice) FROM CarType CT2 WHERE CT2.CTID = C.CTID))";
     ;
 
 
